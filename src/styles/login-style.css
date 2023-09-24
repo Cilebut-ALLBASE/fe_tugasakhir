@@ -39,8 +39,8 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 400px;
-    padding-top: 50px;
+    width: 450px;
+    padding-top: 20px;
     padding-bottom: 50px;
     padding-left: 20px;
     padding-right: 20px;
@@ -79,10 +79,10 @@ body {
 } */
 
 .input {
-    height: 30px;
+    height: 35px;
     border: 2px solid #D9D9D9;
     border-radius: 7px;
-    padding: 5px;
+    padding: absolute;
     font-family: 'Trebuchet MS';
     transition: 0.3s;
     outline: none;
@@ -108,4 +108,13 @@ body {
     bottom: -100px;
     z-index: -1;
     max-height: 80%;
+}
+.input-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.input-half {
+    flex: 1;
 }

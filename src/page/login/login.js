@@ -43,7 +43,7 @@ export const Login = () => {
             <div className='container'>
                 <div className='sub-container'>  {/* supaya display flex dari container tidak mempengaruhi isi */}
                     <div className='input-container'>
-                        <h1>Login</h1>
+                        <h1 align='center'>Login</h1>
                         <label htmlFor='em'>Email</label>
                         <input className='input' type='email' placeholder='Email' id='em' value={email} onChange={(e) => setEmail(e.target.value)} required />
                     </div>
