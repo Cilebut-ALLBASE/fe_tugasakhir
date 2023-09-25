@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
 import '../../styles/login-style.css';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import login1 from '../../assets/login1.png';
 import login2 from '../../assets/login2.png';
 import home from '../home';
+import Register from '../register/register';
 
 export const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const Navigate = useNavigate();
 
     const handleLogin = async () => {
         try {
-            const response = await fetch('https://backend/', {
+            const response = await fetch('http://LAPTOP-A5E7H59A:5000/users', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -23,7 +25,7 @@ export const Login = () => {
             if (response.status === 200) {
                 alert('Login berhasil');
                 // Redirect ke halaman utama
-                return <Link to="../home" />; // Ganti '/home' dengan rute ke halaman utama Anda
+                Navigate('/home') // Ganti '/home' dengan rute ke halaman utama Anda
             } else if (response.status === 401) {
                 setError('Akun tidak terdaftar!');
             } else {
@@ -56,6 +58,8 @@ export const Login = () => {
                     <div className='input-container div-btn'>
                         <button className='log-btn' type='submit' onClick={handleLogin}>Login</button >
                     </div>
+                    <button id='navi' onClick={() => Navigate('/register')}>Belum mempunyai akun?</button>
+                    {/* <Link to="/register" className='link'>Belum mempunyai akun?</Link> */}
                     {error && <div className='error-message'>{error}</div>}
                 </div>
             </div>
