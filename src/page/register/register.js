@@ -17,7 +17,7 @@ export const Register = () => {
 
     const handleRegister = async () => {
         try {
-            const response = await fetch('https://backend/', {
+            const response = await fetch('http://DESKTOP-75HF6R4:5000/users', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -28,7 +28,7 @@ export const Register = () => {
             if (response.status === 200) {
                 alert('akun berhasil terdaftar');
                 // Redirect ke halaman utama
-                navigate('/login')
+                navigate('/')
             } else if (response.status === 401) {
                 setError('Akun tidak terdaftar!');
             } else {
