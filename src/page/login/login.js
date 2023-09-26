@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../../styles/login-style.css';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import login1 from '../../assets/login1.png';
 import login2 from '../../assets/login2.png';
 import home from '../home';
@@ -9,8 +9,9 @@ import Register from '../register/register';
 export const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [rememberMe, setRememberMe] = useState(false);
     const [error, setError] = useState('');
-    const Navigate = useNavigate();
+    const navigate = useNavigate();
 
     const handleLogin = async () => {
         try {
@@ -25,7 +26,7 @@ export const Login = () => {
             if (response.status === 200) {
                 alert('Login berhasil');
                 // Redirect ke halaman utama
-                Navigate('/home') // Ganti '/home' dengan rute ke halaman utama Anda
+                navigate('/home') // Ganti '/home' dengan rute ke halaman utama Anda
             } else if (response.status === 401) {
                 setError('Akun tidak terdaftar!');
             } else {
@@ -36,6 +37,25 @@ export const Login = () => {
             setError('Terjadi kesalahan!');
         }
     };
+
+    // Fungsi untuk mengisi data login dari localStorage saat komponen dimuat
+    useEffect(() => {
+        const rememberedEmail = localStorage.getItem('rememberedEmail');
+
+        if (rememberedEmail) {
+            setEmail(rememberedEmail);
+            setRememberMe(true);
+        }
+    }, []);
+
+    // Fungsi untuk menyimpan data login ke localStorage saat "Remember Me" dicentang
+    useEffect(() => {
+        if (rememberMe) {
+            localStorage.setItem('rememberedEmail', email);
+        } else {
+            localStorage.removeItem('rememberedEmail');
+        }
+    }, [rememberMe, email]);
 
     return (
         <div>
@@ -56,11 +76,21 @@ export const Login = () => {
                     </div>
 
                     <div className='input-container div-btn'>
-                        <button className='log-btn' type='submit' onClick={handleLogin}>Login</button >
+                        <button className='log-btn' type='submit' onClick={handleLogin}>Login</button>
                     </div>
-                    <button id='navi' onClick={() => Navigate('/register')}>Belum mempunyai akun?</button>
-                    {/* <Link to="/register" className='link'>Belum mempunyai akun?</Link> */}
-                    {error && <div className='error-message'>{error}</div>}
+
+                    <div className='input-row'>
+                        <div className='input-paw'>
+                            <label>
+                                <input type='checkbox' checked={rememberMe} onChange={() => setRememberMe(!rememberMe)} /> Remember Me
+                            </label>
+                        </div>
+
+                        <div className='input-paw'>
+                        <Link to="/register" className='link'>Belum mempunyai akun?</Link>
+                        {error && <div className='error-message'>{error}</div>}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
