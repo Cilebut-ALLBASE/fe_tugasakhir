@@ -1,0 +1,17 @@
+.cover {
+    width: 100vw;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 250px;
+    height: 100%;
+    background-color: #c4c4c4;
+    position: absolute;
+}
+
+.cover-content {
+    background-color: #F6F7FB;
+    width: 500px;
+    height: 100%;
+}

@@ -17,7 +17,7 @@ export const Register = () => {
 
     const handleRegister = async () => {
         try {
-            const response = await fetch('https://backend/', {
+            const response = await fetch('http://LAPTOP-A5E7H59A:5000/users', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -28,7 +28,7 @@ export const Register = () => {
             if (response.status === 200) {
                 alert('akun berhasil terdaftar');
                 // Redirect ke halaman utama
-                navigate('/login')
+                navigate('/')
             } else if (response.status === 401) {
                 setError('Akun tidak terdaftar!');
             } else {
@@ -105,6 +105,8 @@ export const Register = () => {
                     <div className='input-container div-btn'>
                         <button className='log-btn' type='submit' onClick={handleRegister} >Sign Up</button>
                     </div>
+                    <button id='navi' onClick={() => navigate('/')}>Sudah mempunyai akun?</button>
+                    {/* <Link to="/" className='link'>Sudah mempunyai akun?</Link> */}
                     {error && <div className='error-message'>{error}</div>}
                 </div>
             </div>
