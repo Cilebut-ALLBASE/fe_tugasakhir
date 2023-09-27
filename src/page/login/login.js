@@ -3,6 +3,8 @@ import '../../styles/login-style.css';
 import { Link, useNavigate } from 'react-router-dom';
 import login1 from '../../assets/login1.png';
 import login2 from '../../assets/login2.png';
+import eyeOpenIcon from '../../assets/showpw.png';
+import eyeClosedIcon from '../../assets/hidepw.png';
 import home from '../home';
 import Register from '../register/register';
 
@@ -10,6 +12,7 @@ export const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [rememberMe, setRememberMe] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
@@ -70,10 +73,18 @@ export const Login = () => {
                         <input className='input' type='email' placeholder='Email' id='em' value={email} onChange={(e) => setEmail(e.target.value)} required />
                     </div>
 
-                    <div className='input-container'>
-                        <label htmlFor='pw'>Password</label>
-                        <input className='input' type='password' placeholder='Password' id='pw' value={password} onChange={(e) => setPassword(e.target.value)} required />
+                    <div className='input-container password-container'>
+                      <label htmlFor='pw'>Password</label>
+                      <div className='password-input-container'>
+                        <input className='input geserdikit' type={showPassword ? 'text' : 'password'} placeholder='Password' id='pw' value={password} onChange={(e) => setPassword(e.target.value)} required />
+                      </div>
+                      <div className='password-input-container1'>
+                        <button className='transparent-button' onClick={() => setShowPassword(!showPassword)}>
+                          {showPassword ? <img src={eyeOpenIcon} alt='Hide Password' className='password-icon' /> : <img src={eyeClosedIcon} alt='Show Password' className='password-icon' />}
+                        </button>
+                      </div>
                     </div>
+
 
                     <div className='input-container div-btn'>
                         <button className='log-btn' type='submit' onClick={handleLogin}>Login</button>
@@ -88,9 +99,9 @@ export const Login = () => {
 
                         <div className='input-paw'>
                         <Link to="/register" className='link'>Belum mempunyai akun?</Link>
-                        {error && <div className='error-message'>{error}</div>}
                         </div>
                     </div>
+                        {error && <div className='error-message'>{error}</div>}
                 </div>
             </div>
         </div>
