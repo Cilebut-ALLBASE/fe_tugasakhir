@@ -105,8 +105,8 @@ export const Register = () => {
                     <div className='input-container div-btn'>
                         <button className='log-btn' type='submit' onClick={handleRegister} >Sign Up</button>
                     </div>
-                    <button id='navi' onClick={() => navigate('/')}>Sudah mempunyai akun?</button>
-                    {/* <Link to="/" className='link'>Sudah mempunyai akun?</Link> */}
+                    {/* <button id='navi' onClick={() => navigate('/')}>Sudah mempunyai akun?</button> */}
+                    <Link to="/" className='link'>Sudah mempunyai akun?</Link>
                     {error && <div className='error-message'>{error}</div>}
                 </div>
             </div>

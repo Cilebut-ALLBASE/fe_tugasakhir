@@ -1,21 +1,16 @@
-/* .content  {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    border-radius: 40px;
-    width: 1200px;
-    height: 97%;
-    transform: translate(-50%, -50%);
-    margin-left: -155px;
-    background-color: #F6F7FB;
-    background-color: rgb(212, 212, 212);
-} */
-
 .absolute {
     position: absolute;
     top: 50%;
     left: 50%;
+    height: 90vh;
     transform: translate(-40%, -50%);
+    background-color: #bcbcbc;
+    border-radius: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .content {
@@ -24,42 +19,96 @@
     padding-right: 50px;
     display: flex;
     flex-wrap: wrap;
-    background-color: #b8c0dc;
-    height: 97vh;
     width: 82vw;
-    border-radius: 40px;
+    height: 100%;
+}
+
+.status {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 30px;
 }
 
 .present {
+    background-color: #5756B3;
+    overflow: hidden;
     flex: 1;
     padding: 10px;
     padding-top: 13px;
     height: 20%;
     border-radius: 20px;
-    background-color: #5756B3;
     color: white;
-    width: 40%;
+    height: 20vh;
     margin-right: 80px;
+    max-width: calc(50% - 5px);
 }
 
 .absent {
+    background-color: #E7BDD3;
+    overflow: hidden;
     flex: 1;
     padding: 10px;
     padding-top: 13px;
     height: 20%;
     border-radius: 20px;
-    background-color: #E7BDD3;
     color: white;
-    width: 40%;
+    height: 20vh;
+    float: right;
+}
+
+.present-bg {
+    float: right;
+    width: 250px;
+}
+
+.absent-bg {
+    float: right;
+    width: 300px;
 }
 
 p {
     padding-left: 25px;
     font-size: 13pt;
+    ;
     font-weight: bold;
+    margin: 0 !important;
 }
 
-h1 {
+.h1 {
     width: 100%;
-    height: auto;
+    padding: auto;
+    padding-bottom: 30px;
+}
+
+.history {
+    background-color: white;
+    padding: 20px;
+    border-radius: 20px;
+    overflow: hidden;
+    height: 350px;
+}
+
+.h4 {
+    font-weight: bold !important;
+    font-size: 70px;
+    padding-bottom: 5px;
+}
+
+table {
+    border-collapse: collapse;
+    width: auto;
+}
+
+th {
+    border-top: 2px solid #E4E5E7 !important;
+    border-bottom: 2px solid #E4E5E7 !important;
+    width: 150px;
+    padding: 2px;
+    text-align: center;
+}
+
+td, tr {
+    text-align: center;
 }

@@ -8,13 +8,6 @@ label {
     text-decoration: none;
 }
 
-#navi {
-    outline: none;
-    border: 0px;
-    background: none;
-    color: rgb(0, 39, 236);
-}
-
 h1 {
     font-weight: bold !important;
 }
@@ -95,6 +88,13 @@ body {
     border-left: 10px solid #585AB2;
 }
 
+.input-paw {
+  display: flex;
+  justify-content: space-between;
+  margin-right: 25px;
+  margin-left: 25px;
+}
+
 .input:focus {
     border: 2px solid #0b0b52;
 }
@@ -124,4 +124,8 @@ body {
 
 .input-half {
     flex: 1;
+}
+
+.inFont {
+    font-size: 20px;
 }
