@@ -65,6 +65,14 @@ body {
     transition: 0.3s;
 }
 
+.pst {
+    display: flex;
+}
+
+.pstb {
+    margin-right: 10px;
+}
+
 .log-btn:hover {
     background: #0b0b52;
     cursor: pointer;
