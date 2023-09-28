@@ -129,3 +129,38 @@ body {
 .inFont {
     font-size: 20px;
 }
+
+.password-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.password-input-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.password-input-container1 {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.password-icon {
+  width: 24px; 
+  height: 24px; 
+  position: absolute;
+  right: 9px;
+  top: -30px;
+  cursor: pointer;
+}
+
+.transparent-button {
+    background: none;
+    border: none;
+}
+
+.geserdikit {
+    width: 50vh;
+}

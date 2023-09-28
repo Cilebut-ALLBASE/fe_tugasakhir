@@ -58,6 +58,10 @@ export const Home = () => {
               </tbody>
             </table>
           </div>
+          <div className='clock'>
+            <LiveClock />
+          </div>
+          <div className='calendar'></div>
         </div>
       </div>
       <Sidebar />

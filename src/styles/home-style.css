@@ -2,9 +2,9 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    height: 90vh;
+    height: 95vh;
     transform: translate(-40%, -50%);
-    background-color: #bcbcbc;
+    background-color: #F6F7FB;
     border-radius: 40px;
     display: flex;
     flex-direction: column;
@@ -42,7 +42,7 @@
     color: white;
     height: 20vh;
     margin-right: 80px;
-    max-width: calc(50% - 5px);
+    /* max-width: calc(50% - 5px); */
 }
 
 .absent {
@@ -84,21 +84,27 @@ p {
 
 .history {
     background-color: white;
+    flex:1;
     padding: 20px;
     border-radius: 20px;
     overflow: hidden;
-    height: 350px;
+    margin-right: 80px;
 }
 
 .h4 {
     font-weight: bold !important;
-    font-size: 70px;
     padding-bottom: 5px;
 }
 
 table {
     border-collapse: collapse;
     width: auto;
+    align-items: center;
+}
+
+body {
+    overflow-y: hidden;
+    overflow-x: hidden;
 }
 
 th {
@@ -111,4 +117,20 @@ th {
 
 td, tr {
     text-align: center;
+}
+
+.clock {
+    width: 50%;
+    height:fit-content;
+    flex: 1;
+    background-color: #DDB4FF;
+    border-radius: 20px;
+    font-size: 85px;
+    font-weight: bold;
+    color: #41406E;
+    text-align: center;
+    padding: 10px;   
+}
+
+.calendar {
 }
