@@ -1,0 +1,93 @@
+.calendar {
+  width: 540px;
+  height: 300px;
+  border-radius: 20px;
+  background-color: white;
+  padding: 5px;
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  font-family:'Trebuchet MS' !important;
+  font-weight: bold;
+  border-bottom: 2px solid #E4E5E7;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  margin-bottom: 10px;
+}
+
+.header .icon {
+  cursor: pointer;
+  font-size: 20px;
+  width: max-content;
+}
+
+.header .icon:hover {
+  color: #007bff;
+}
+
+.days {
+  display: flex;
+  justify-content: space-around;
+
+}
+
+.days .column {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  max-width: max-content;
+  color: #7E818C;
+  font-weight: bold;
+  text-align: center;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.body {
+  font-family:'Trebuchet MS' !important;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  /* width: 100%; */
+}
+
+.row {
+  display: flex;
+  justify-content:space-around;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  flex: 1;
+  color: #1B59F8;
+  /* height: 55px; */
+  padding: 5px;
+  margin-left: 3px;
+  margin-right: 3px;
+  /* background-color: antiquewhite; */
+}
+
+.number {
+  font-size: 18px;
+  /* font-weight: bold; */
+}
+
+.today {
+  background-color: #F2E5F2;
+  color: #1B59F8;
+  border-radius: 10px;
+}
+
+.disabled {
+  color: lightgray;
+  pointer-events: none;
+}

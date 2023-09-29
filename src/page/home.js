@@ -3,6 +3,7 @@ import LiveClock from '../components/live-clock';
 import { Sidebar } from '../components/sidebar';
 import present from '../assets/Present-bg.png';
 import absent from '../assets/Absent-bg.png';
+import Calendar from '../components/calendar';
 
 export const Home = () => {
   return (
@@ -23,6 +24,7 @@ export const Home = () => {
             </div>
           </div>
 
+          <div className='bungkus-kedua'>
           <div className='history'>
             <h4 className='h4'>Leave History</h4>
             <table>
@@ -57,11 +59,17 @@ export const Home = () => {
                 </tr>
               </tbody>
             </table>
-          </div>
-          <div className='clock'>
-            <LiveClock />
-          </div>
-          <div className='calendar'></div>
+            
+            </div>
+
+            <div className='clock'>
+              <LiveClock />
+            </div>
+
+            <div className='kalender'>
+              <Calendar />
+            </div>
+            </div>
         </div>
       </div>
       <Sidebar />

@@ -1,10 +1,12 @@
-.absolute {
+/* .absolute {
     position: absolute;
     top: 50%;
     left: 50%;
     height: 95vh;
+    height: fit-content;
     transform: translate(-40%, -50%);
     background-color: #F6F7FB;
+    background-color: #c6c6c6;
     border-radius: 40px;
     display: flex;
     flex-direction: column;
@@ -42,7 +44,6 @@
     color: white;
     height: 20vh;
     margin-right: 80px;
-    /* max-width: calc(50% - 5px); */
 }
 
 .absent {
@@ -83,12 +84,21 @@ p {
 }
 
 .history {
+    flex: 1 0 50%;
     background-color: white;
-    flex:1;
     padding: 20px;
     border-radius: 20px;
     overflow: hidden;
+    width: max-content;
     margin-right: 80px;
+    margin-bottom: 20px;
+}
+
+.bungkus-kedua {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    row-gap: 0;
 }
 
 .h4 {
@@ -98,8 +108,173 @@ p {
 
 table {
     border-collapse: collapse;
-    width: auto;
+    width: 90%;
+    align-content: center;
+}
+
+body {
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+th {
+    border-top: 2px solid #E4E5E7 !important;
+    border-bottom: 2px solid #E4E5E7 !important;
+    width: 150px;
+    padding: 2px;
+    text-align: center;
+}
+
+td, tr {
+    text-align: center;
+}
+
+.clock {
+    height: max-content;
+    flex: 1;
+    background-color: #DDB4FF;
+    border-radius: 20px;
+    font-size: 85px;
+    font-weight: bold;
+    color: #41406E;
+    text-align: center;
+    padding: 10px;
+    width: 540px;
+}
+
+.live-clock {
+    align-content: center;
+}
+
+.kalender {
+    place-self: center;
+    grid-column: 2;
+} */
+
+.absolute {
+    position: absolute;
+    width: 1220px;
+    top: 50%;
+    left: 795px;
+    height: 98vh;
+    /* height: fit-content; */
+    transform: translate(-40%, -50%);
+    background-color: #F6F7FB;
+    /* background-color: #c6c6c6; */
+    border-radius: 40px;
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.content {
+    padding: 25px;
+    padding-left: 50px;
+    padding-right: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 82vw;
+    height: 100%;
+}
+
+.status {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.present {
+    position: absolute;
+    top: 95px;
+    width: 540px;
+    background-color: #5756B3;
+    overflow: hidden;
+    flex: 1;
+    padding: 10px;
+    padding-top: 13px;
+    height: 20%;
+    border-radius: 20px;
+    color: white;
+    height: 17vh;
+    margin-right: 80px;
+}
+
+.absent {
+    position: absolute;
+    top: 95px;
+    width: 540px;
+    right: 55px;
+    background-color: #E7BDD3;
+    overflow: hidden;
+    flex: 1;
+    padding: 10px;
+    padding-top: 13px;
+    height: 20%;
+    border-radius: 20px;
+    color: white;
+    height: 17vh;
+    float: right;
+}
+
+.present-bg {
+    width: 250px;
+    right: 0;
+    top: 10px;
+    position: absolute;
+}
+
+.absent-bg {
+    width: 300px;
+    right: 0;
+    top: 10px;
+    position: absolute;
+}
+
+p {
+    padding-left: 25px;
+    font-size: 13pt;
+    font-weight: bold;
+    margin: 0 !important;
+}
+
+.h1 {
+    width: 100%;
+    padding: auto;
+}
+
+.history {
+    position: absolute;
+    top: 250px;
+    width: 540px;
+    flex: 1 ;
+    background-color: white;
+    padding: 20px;
+    border-radius: 20px;
+    overflow: hidden;
+    /* margin-right: 100px; */
+    height: 445px;
+}
+
+.bungkus-kedua {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.h4 {
+    font-weight: bold !important;
+    padding-bottom: 5px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 90%;
+    align-content: center;
 }
 
 body {
@@ -120,8 +295,11 @@ td, tr {
 }
 
 .clock {
-    width: 50%;
-    height:fit-content;
+    position: absolute;
+    width: 540px;
+    right: 55px;
+    top: 250px;
+    height: max-content;
     flex: 1;
     background-color: #DDB4FF;
     border-radius: 20px;
@@ -129,8 +307,18 @@ td, tr {
     font-weight: bold;
     color: #41406E;
     text-align: center;
-    padding: 10px;   
+    padding: 10px;
 }
 
-.calendar {
+.live-clock {
+    align-content: center;
+    font-size: 50px;
+}
+
+.kalender {
+    place-self: center;
+    position: absolute;
+    right: 100px;
+    bottom: 50px;
+    right: 55px;
 }
