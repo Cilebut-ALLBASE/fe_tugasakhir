@@ -1,7 +1,6 @@
 import React from "react";
 import '../styles/sidebar-style.css'
 import '../App.css'
-import '../styles/home-style.css'
 
 export const Sidebar = () => {
     return (

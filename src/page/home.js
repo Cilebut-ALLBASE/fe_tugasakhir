@@ -1,6 +1,7 @@
 import React from 'react';
 import LiveClock from '../components/live-clock';
-import { Sidebar } from '../components/sidebar';
+import Sidebar from './sidebar/sidebar';
+import '../styles/home-style.css';
 import present from '../assets/Present-bg.png';
 import absent from '../assets/Absent-bg.png';
 import Calendar from '../components/calendar';
@@ -10,7 +11,7 @@ export const Home = () => {
     <div>
       <div className='absolute'>
         <div className='content'>
-          <h1 className='h1'>Overview</h1>
+          <h1>Overview</h1>
 
           <div className='status'>
             <div className='present'>
