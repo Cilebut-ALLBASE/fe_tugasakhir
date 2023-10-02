@@ -153,10 +153,9 @@ td, tr {
 
 .absolute {
     position: absolute;
-    width: 1220px;
     top: 50%;
-    left: 795px;
-    height: 98vh;
+    left: 50%;
+    height: 95vh;
     /* height: fit-content; */
     transform: translate(-40%, -50%);
     background-color: #F6F7FB;
@@ -188,9 +187,6 @@ td, tr {
 }
 
 .present {
-    position: absolute;
-    top: 95px;
-    width: 540px;
     background-color: #5756B3;
     overflow: hidden;
     flex: 1;
@@ -199,15 +195,11 @@ td, tr {
     height: 20%;
     border-radius: 20px;
     color: white;
-    height: 17vh;
+    height: 20vh;
     margin-right: 80px;
 }
 
 .absent {
-    position: absolute;
-    top: 95px;
-    width: 540px;
-    right: 55px;
     background-color: #E7BDD3;
     overflow: hidden;
     flex: 1;
@@ -216,22 +208,18 @@ td, tr {
     height: 20%;
     border-radius: 20px;
     color: white;
-    height: 17vh;
+    height: 20vh;
     float: right;
 }
 
 .present-bg {
+    float: right;
     width: 250px;
-    right: 0;
-    top: 10px;
-    position: absolute;
 }
 
 .absent-bg {
+    float: right;
     width: 300px;
-    right: 0;
-    top: 10px;
-    position: absolute;
 }
 
 p {
@@ -243,20 +231,19 @@ p {
 
 .h1 {
     width: 100%;
-    padding: auto;
+    padding-bottom: 10px;
 }
 
 .history {
-    position: absolute;
-    top: 250px;
-    width: 540px;
-    flex: 1 ;
+    flex: 1 0 1;
+    align-items: center;
     background-color: white;
     padding: 20px;
     border-radius: 20px;
     overflow: hidden;
-    /* margin-right: 100px; */
-    height: 445px;
+    width: max-content;
+    margin-right: 130px;
+    height: 420px;
 }
 
 .bungkus-kedua {
@@ -290,35 +277,31 @@ th {
     text-align: center;
 }
 
-td, tr {
+td,
+tr {
     text-align: center;
 }
 
 .clock {
-    position: absolute;
-    width: 540px;
-    right: 55px;
-    top: 250px;
-    height: max-content;
+    position: static;
+    height: fit-content;
     flex: 1;
     background-color: #DDB4FF;
     border-radius: 20px;
-    font-size: 85px;
+    font-size: 55px;
     font-weight: bold;
     color: #41406E;
     text-align: center;
-    padding: 10px;
+    padding: 5px;
 }
 
 .live-clock {
     align-content: center;
-    font-size: 50px;
 }
 
 .kalender {
-    place-self: center;
+    /* display: flex; */
+    top: 390px;
+    right: 50px;
     position: absolute;
-    right: 100px;
-    bottom: 50px;
-    right: 55px;
 }

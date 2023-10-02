@@ -25,41 +25,40 @@ export const Home = () => {
           </div>
 
           <div className='bungkus-kedua'>
-          <div className='history'>
-            <h4 className='h4'>Leave History</h4>
-            <table>
-              <thead>
-                <tr>
-                  <th>Type of Leave</th>
-                  <th>Date</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
+            <div className='history'>
+              <h4 className='h4'>Leave History</h4>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Type of Leave</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
 
-              <tbody>
-                <tr>
-                  <td>halo</td>
-                  <td>halo</td>
-                  <td>halo</td>
-                </tr>
-                <tr>
-                  <td>halo</td>
-                  <td>halo</td>
-                  <td>halo</td>
-                </tr>
-                <tr>
-                  <td>halo</td>
-                  <td>halo</td>
-                  <td>halo</td>
-                </tr>
-                <tr>
-                  <td>halo</td>
-                  <td>halo</td>
-                  <td>halo</td>
-                </tr>
-              </tbody>
-            </table>
-            
+                <tbody>
+                  <tr>
+                    <td>halo</td>
+                    <td>halo</td>
+                    <td>halo</td>
+                  </tr>
+                  <tr>
+                    <td>halo</td>
+                    <td>halo</td>
+                    <td>halo</td>
+                  </tr>
+                  <tr>
+                    <td>halo</td>
+                    <td>halo</td>
+                    <td>halo</td>
+                  </tr>
+                  <tr>
+                    <td>halo</td>
+                    <td>halo</td>
+                    <td>halo</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
 
             <div className='clock'>
@@ -69,7 +68,7 @@ export const Home = () => {
             <div className='kalender'>
               <Calendar />
             </div>
-            </div>
+          </div>
         </div>
       </div>
       <Sidebar />
