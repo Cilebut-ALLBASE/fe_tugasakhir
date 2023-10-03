@@ -148,7 +148,6 @@ tr {
 }
 
 .kalender {
-    /* display: flex; */
     top: 390px;
     right: 50px;
     position: fixed;

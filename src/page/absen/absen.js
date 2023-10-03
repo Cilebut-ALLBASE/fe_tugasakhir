@@ -3,8 +3,10 @@ import '../../styles/absen-style.css';
 import { Sidebar } from '../sidebar/sidebar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faBell } from '@fortawesome/free-solid-svg-icons';
+import { useLocation } from 'react-router-dom';
 
 export const Absen = ({ label, checked, onChange }) => {
+    const location = useLocation();
 
     return (
         <div>
@@ -17,8 +19,9 @@ export const Absen = ({ label, checked, onChange }) => {
                     <input className="box-search" type="text"></input>
                 </div>
                 <h1 className="h1">Attendance</h1>
-                <a className="h2" href="./absen">Attendance</a>
-                <a className="h3" href="./history">History</a>
+                <a className={`h2 ${location.pathname === '/absen' ? 'active-link' : ''}`} href="./absen">Attendance</a>
+                <a className={`h3 ${location.pathname === '/history' ? 'active-link' : ''}`} href="./history">History</a>
+
                 <div className="box-in1">
                     <label className="checkbox-container"><h2 className="present1">Present</h2>
                         {label}
@@ -39,6 +42,7 @@ export const Absen = ({ label, checked, onChange }) => {
                         <h1 className="h1-date">15</h1>
                     </div>
                 </div>
+
                 <div className="box-in2">
                     <h1 className="time2">9 AM - 10 AM</h1>
                     <h1 className="day2">Tuesday</h1>
@@ -59,6 +63,7 @@ export const Absen = ({ label, checked, onChange }) => {
                         <h1 className="h2-date">16</h1>
                     </div>
                 </div>
+                
                 <div className="box-in3">
                     <label className="checkbox-container5"><h2 className="present3">Present</h2>
                         {label}

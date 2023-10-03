@@ -75,9 +75,9 @@ header {
 
 .user {
     font-size: 35px;
-    color: #D3B6B9;
+    color: #585AB2;
     position: fixed;
-    top: 230px;
+    top: 238px;
     left: 60px;
     z-index: 1;
 }

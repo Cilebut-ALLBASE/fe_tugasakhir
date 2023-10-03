@@ -18,7 +18,7 @@ export const Login = () => {
 
     const handleLogin = async () => {
         try {
-            const response = await fetch('http://DESKTOP-75HF6R4:5000/users', {
+            const response = await fetch('http://LAPTOP-A5E7H59A:5000/users', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
