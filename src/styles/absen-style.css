@@ -1,12 +1,16 @@
 .box {
     width: 77%;
     height: 700px;
+    /* background-color: #dedede !important; */
+    display: flex;
+    padding: 25px;
     background-color: #F6F7FB;
-    border: 2px solid #F6F7FB;
+    border: none;
     position: fixed;
     top: 20px;
     right: 20px;
     border-radius: 35px;
+    min-width: max-content;
 }
 
 .box-search {
@@ -27,9 +31,12 @@
     font-weight: bold;
     font-size: 32px;
     color: #41406E;
-    position: fixed;
+    display: flex;
+    height: fit-content;
+    margin-bottom: 110px;
+    flex-direction: column;
     top: 50px;
-    left: 400px;
+    margin-left: 40px;
 }
 
 .active-link {
@@ -42,10 +49,10 @@
     font-size: 23px;
     text-decoration: none;
     color: #41406E;
-    padding: 10px;
+    /* padding: 10px;
     position: fixed;
     top: 150px;
-    left: 600px;
+    left: 600px; */
     border-radius: 25px;
     transition: 0.3s;
 }
@@ -59,16 +66,22 @@
     /* left: 550px; */
 }
 
+.h2, .h3 {
+    padding: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;    
+}
+
 .h3 {
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
     font-size: 23px;
     text-decoration: none;
     color: #41406E;
-    padding: 10px;
+    /* padding: 10px;
     position: fixed;
     top: 150px;
-    right: 300px;
+    right: 300px; */
     border-radius: 25px;
     transition: 0.3s;
 }
@@ -617,5 +630,94 @@
     cursor: pointer;
     content: '\2713';
     background-color: #41406E;
+}
 
+/*----------------------------------history-absen----------------------------------*/
+
+.bungkus-card {
+    padding: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding-top: 0;
+    width: 100%;
+    height: 460px;
+    align-self: flex-end;
+    /* background-color: #DDB4FF; */
+}
+
+.list-card {
+    width: 100%;
+    background-color: white;
+    height: 130px;
+    padding: 20px;
+    border-radius: 30px;
+    display: flex;
+    min-width: fit-content;
+}
+
+.box-tanggal {
+    flex-shrink: 0;
+    width: 90px;
+    height: 100%;
+    border-radius: 20px;
+    background-color: #F2E5F2;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    color: #41406E;
+    margin-right: 40px;
+}
+
+.date-history {
+    font-size: 40px;
+    margin: 0;
+    padding: 0;
+}
+
+.content-history {
+    flex-shrink: 1;
+    width: calc(100% - 15vw);
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    color: #41406E;
+    justify-content: space-around;
+}
+
+.day {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 23px;
+    margin: 0;
+}
+
+.jam-history {
+    margin: 0;
+    padding: 0;
+}
+
+.status-history {
+    margin: 0;
+    align-self: center;
+    height: fit-content;
+}
+
+.status-green {
+    font-weight: bold;
+    height: fit-content;    
+    color: #00FE0A;
+    margin: 0;
+}
+
+.nav-button {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.nav-button-cover {
+    /* margin-top: 150px; */
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }

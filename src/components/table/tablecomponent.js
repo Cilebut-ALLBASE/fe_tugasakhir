@@ -55,8 +55,8 @@ const TableComponent = (props) => {
   }
 
   return (
-    <div className="container mt-5">
-      <table className="table table-bordered">
+    <div>
+      <table>
         <thead>
           <tr>
             {column.map((col) => (

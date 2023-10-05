@@ -20,7 +20,7 @@ function App() {
         <Route path='/start' element={<Start />}></Route>
         <Route path='/home' element={<Home />}></Route>
         <Route path='/absen' element={<Absen />}></Route>
-        <Route path='/history' element={<Absen_history />}></Route>
+        <Route path='/absen-history' element={<Absen_history />}></Route>
         <Route path='/leave' element={<Leave />}></Route>
       </Routes>
     </div>

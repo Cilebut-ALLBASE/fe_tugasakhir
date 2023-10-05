@@ -16,7 +16,7 @@
     flex-wrap: wrap;
 }
 
-.content {
+.content-home {
     padding: 25px;
     padding-left: 40px;
     padding-right: 40px;
@@ -26,7 +26,7 @@
     height: 100%;
 }
 
-.status {
+.status-home {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -89,10 +89,11 @@ h1 {
     padding: 20px;
     border-radius: 20px;
     overflow: hidden;
-    width: max-content;
-    margin-right: 110px;
-    height: 420px;
-    min-width: max-content
+    width: 510px;
+    min-width: min-content;
+    margin-right: auto;
+    height: 410px;
+    min-width: max-content;
 }
 
 .bungkus-kedua {
@@ -150,7 +151,9 @@ tr {
 }
 
 .kalender {
-    top: 390px;
-    right: 50px;
+    /* top: 390px;
+    right: 50px; */
+    right: 40px;
+    bottom: 25px;
     position: fixed;
 }

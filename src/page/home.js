@@ -6,16 +6,16 @@ import present from '../assets/Present-bg.png';
 import absent from '../assets/Absent-bg.png';
 import Calendar from '../components/calendar';
 import TableComponent from '../components/table/tablecomponent';
-import Leave_history from '../components/table/leave-history';
+import Leave_history from '../components/table/history-leave';
 
 export const Home = () => {
   return (
     <div>
       <div className='absolute'>
-        <div className='content'>
+        <div className='content-home'>
           <h1>Overview</h1>
 
-          <div className='status'>
+          <div className='status-home'>
             <div className='present'>
               <p>Present</p>
               <img src={present} alt='bg' className='present-bg'></img>
