@@ -1,7 +1,6 @@
 import React from "react";
 import '../../styles/absen-style.css';
 import { Sidebar } from '../sidebar/sidebar';
-import '../../styles/history-absen-style.css'
 import { useLocation } from "react-router-dom";
 
 export const Absen_history = () => {
