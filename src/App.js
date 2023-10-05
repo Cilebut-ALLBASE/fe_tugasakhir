@@ -9,6 +9,7 @@ import { Sidebar } from './page/sidebar/sidebar';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import Absen_history from './page/absen/history-absen';
+import { Leave } from './page/leave/leave';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path='/home' element={<Home />}></Route>
         <Route path='/absen' element={<Absen />}></Route>
         <Route path='/history' element={<Absen_history />}></Route>
+        <Route path='/leave' element={<Leave />}></Route>
       </Routes>
     </div>
   );
