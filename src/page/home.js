@@ -5,6 +5,8 @@ import '../styles/home-style.css';
 import present from '../assets/Present-bg.png';
 import absent from '../assets/Absent-bg.png';
 import Calendar from '../components/calendar';
+import TableComponent from '../components/table/tablecomponent';
+import Leave_history from '../components/table/leave-history';
 
 export const Home = () => {
   return (
@@ -28,7 +30,8 @@ export const Home = () => {
           <div className='bungkus-kedua'>
             <div className='history'>
               <h4 className='h4'>Leave History</h4>
-              <table>
+              <Leave_history />
+              {/* <table>
                 <thead>
                   <tr>
                     <th>Type of Leave</th>
@@ -59,7 +62,7 @@ export const Home = () => {
                     <td>halo</td>
                   </tr>
                 </tbody>
-              </table>
+              </table> */}
             </div>
 
             <div className='clock'>

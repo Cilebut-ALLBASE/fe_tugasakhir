@@ -5,8 +5,6 @@ import login1 from '../../assets/login1.png';
 import login2 from '../../assets/login2.png';
 import eyeOpenIcon from '../../assets/icon/showpw.png';
 import eyeClosedIcon from '../../assets/icon/hidepw.png';
-import home from '../home';
-import Register from '../register/register';
 
 export const Login = () => {
     const [email, setEmail] = useState('');
@@ -18,7 +16,7 @@ export const Login = () => {
 
     const handleLogin = async () => {
         try {
-            const response = await fetch('http://LAPTOP-A5E7H59A:5000/users', {
+            const response = await fetch('http://LAPTOP-A5E7H59A:5000/auth', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
