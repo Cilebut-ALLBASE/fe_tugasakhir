@@ -18,7 +18,7 @@ export const Login = () => {
 
     const handleLogin = async () => {
         try {
-            const response = await fetch('http://DESKTOP-75HF6R4:5000/users', {
+            const response = await fetch('http://DESKTOP-75HF6R4:5000/auth', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -27,6 +27,8 @@ export const Login = () => {
             });
 
             if (response.status === 200) {
+                const responseData = await response.json();
+                console.log('Data Response', responseData)
                 alert('Login berhasil');
                 // Redirect ke halaman utama
                 navigate('/home') // Ganti '/home' dengan rute ke halaman utama Anda
