@@ -40,18 +40,7 @@ export const LeaveHD = () => {
 
     const [date, setData] = useState();
 
-    const [selectedOption, setSelectedOption] = useState('');
-
-    const dropdownOptions = [
-        'Annual Leave',
-        'Hospitalization',
-        'Marriage',
-        'Other',
-    ];
-
-    const handleDropdownChange = (event) => {
-        setSelectedOption(event.target.value)
-    }
+    const [role, setRole] = useState('');
 
     return (
         <div>
@@ -86,11 +75,19 @@ export const LeaveHD = () => {
                     ></input>
 
                     <h2 className="type">Type of Leave</h2>
-                    <select className="input-type" value={selectedOption} onChange={handleDropdownChange}>
-                        <option className="dropdown" value="">Choose one</option>
-                        {dropdownOptions.map((option, index) => {
-                            <option key={index} value={option}>{option}</option>
-                        })}
+                    <select
+                        className='input-type'
+                        id='role'
+                        value={role}
+                        placeholder='select role'
+                        onChange={(e) => setRole(e.target.value)}
+                        required
+                    >
+                        <option value=''>Choose one</option>
+                        <option value='Annual Leave'>Annual Leave</option>
+                        <option value='Hospitalization'>Hospitalization</option>
+                        <option value='Marriage'>Marriage</option>
+                        <option value='Other'>Other</option>
                     </select>
 
                     <h2 className="reason">Reason</h2>
