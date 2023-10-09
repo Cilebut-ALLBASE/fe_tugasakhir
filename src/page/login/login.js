@@ -5,8 +5,6 @@ import login1 from '../../assets/login1.png';
 import login2 from '../../assets/login2.png';
 import eyeOpenIcon from '../../assets/icon/showpw.png';
 import eyeClosedIcon from '../../assets/icon/hidepw.png';
-import home from '../home';
-import Register from '../register/register';
 
 export const Login = () => {
     const [email, setEmail] = useState('');

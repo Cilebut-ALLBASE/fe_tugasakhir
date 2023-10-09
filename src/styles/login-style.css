@@ -92,7 +92,6 @@ body {
     height: 35px;
     border: 2px solid #D9D9D9;
     border-radius: 7px;
-    padding: absolute;
     font-family: 'Trebuchet MS';
     transition: 0.3s;
     outline: none;
@@ -173,5 +172,5 @@ body {
 }
 
 .geserdikit {
-    width: 50vh;
+    width: 100vw;
 }
