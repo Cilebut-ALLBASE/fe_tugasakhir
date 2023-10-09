@@ -17,7 +17,7 @@ export const Register = () => {
 
     const handleRegister = async () => {
         try {
-            const response = await fetch('http://LAPTOP-A5E7H59A:5000/users', {
+            const response = await fetch('http://DESKTOP-75HF6R4:5000/users', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -82,11 +82,9 @@ export const Register = () => {
                                 required
                             >
                                 <option value=''>select role</option>
-                                <option value='FrontEnd'>FrontEnd</option>
-                                <option value='BackEnd'>BackEnd</option>
-                                <option value='Data Science'>Data Science</option>
-                                <option value='Data Engineer'>Data Engineer</option>
-                                <option value='Business Analyst'>Business Analyst</option>
+                                <option value='staff'>Staff</option>
+                                <option value='hr'>HR</option>
+                                <option value='hd'>HD</option>
                             </select>
                         </div>
                     </div>
