@@ -13,7 +13,7 @@ const Calendar = () => {
             <div className="header ">
                 <div className="column col-start">
                     <div className="icon" onClick={prevMonth}> {/* Ini adalah panah mengarah ke kiri*/}
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none" transform="scale(-1, 1)">
+                        <svg className='panah' xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none" transform="scale(-1, 1)">
                             <path d="M5.81689 12.325L9.6419 8.5L5.8169 4.675L7.00023 3.5L12.0002 8.5L7.00023 13.5L5.81689 12.325Z" fill="#848A95" />
                         </svg>
                     </div>
@@ -23,7 +23,7 @@ const Calendar = () => {
                 </div>
                 <div className="column col-end" onClick={nextMonth}> {/* Ini adalah panah mengarah ke kanan */}
                     <div className="icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none">
+                        <svg className='panah' xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none">
                             <path d="M5.81689 12.325L9.6419 8.5L5.8169 4.675L7.00023 3.5L12.0002 8.5L7.00023 13.5L5.81689 12.325Z" fill="#848A95" />
                         </svg>
                     </div>
@@ -38,7 +38,7 @@ const Calendar = () => {
 
         let startDate = startOfMonth(currentDate);
 
-        for (let i = 2; i < 9; i++) {
+        for (let i = 0; i < 7; i++) {
             days.push(
                 <div className="column col-center" key={i}>
                     {format(addDays(startDate, i), dateFormat)}

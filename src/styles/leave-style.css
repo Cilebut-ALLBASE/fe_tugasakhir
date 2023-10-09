@@ -67,6 +67,7 @@
 }
 
 .box-name {
+    padding: 10px;
     width: 350px;
     height: 50px;
     border: 2px solid;
@@ -89,6 +90,7 @@
 }
 
 .box-role {
+    padding: 10px;
     width: 350px;
     height: 50px;
     border: 2px solid;
@@ -112,6 +114,7 @@
 
 /* css dropdown */
 .drop {
+    padding: 10px;
     width: 350px;
     height: 50px;
     border: 2px solid;
@@ -140,6 +143,7 @@
 }
 
 .box-reason {
+    padding: 10px;
     width: 350px;
     height: 50px;
     border: 2px solid;
@@ -162,6 +166,7 @@
 }
 
 .box-date {
+    padding: 10px;
     width: 350px;
     height: 50px;
     border: 2px solid;
@@ -184,6 +189,7 @@
 }
 
 .period-box {
+    padding: 10px;
     width: 350px;
     height: 50px;
     border: 2px solid;
@@ -206,6 +212,7 @@
 }
 
 .box-phone {
+    padding: 10px;
     width: 350px;
     height: 50px;
     border: 2px solid;
@@ -228,6 +235,7 @@
 }
 
 .box-emergency {
+    padding: 10px;
     width: 350px;
     height: 50px;
     border: 2px solid;

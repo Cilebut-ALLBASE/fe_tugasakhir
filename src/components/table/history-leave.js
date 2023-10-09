@@ -8,7 +8,7 @@ const Leave_history = () => {
     const columns = [
         { field: 'typeleave', column: 'Type of Leave' },
         { field: 'date', column: 'Date' },
-        { field: 'leaveperiod', column: 'Leave Period' },
+        { field: 'status', column: 'Status' },
     ];
 
     // const columns = [

@@ -10,6 +10,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import Absen_history from './page/absen/history-absen';
 import { Leave } from './page/leave/leave';
+import { Home_hr } from './page/home-hr';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path='/absen' element={<Absen />}></Route>
         <Route path='/absen-history' element={<Absen_history />}></Route>
         <Route path='/leave' element={<Leave />}></Route>
+        <Route path='/home_hr' element={<Home_hr />}></Route>
       </Routes>
     </div>
   );

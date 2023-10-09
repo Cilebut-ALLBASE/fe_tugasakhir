@@ -24,7 +24,7 @@ export const Absen_history = () => {
 
                             <div className="content-history">
                                 <h3 className="day">Monday</h3>
-                                <p className="jam-history">9 AM - 10AM</p>
+                                <p className="jam-history">9 AM - 10 AM</p>
                             </div>
                             <div className="status-history">
                                 <h4 className="status-green">Present</h4>

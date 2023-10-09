@@ -7,6 +7,17 @@
   font-family: Arial, sans-serif;
 }
 
+.panah {
+  transition: 0.3s;
+}
+
+.panah:hover {
+  background-color: #E4E5E7;
+  border-radius: 10px;
+  width: 80px;
+  height: 40px;
+}
+
 .header {
   font-family:'Trebuchet MS' !important;
   font-weight: bold;
@@ -84,6 +95,12 @@
   background-color: #F2E5F2;
   color: #1B59F8;
   border-radius: 10px;
+  transition: 0.3s;
+}
+
+.today:active{
+  transform: scale(1.5);
+  
 }
 
 .disabled {

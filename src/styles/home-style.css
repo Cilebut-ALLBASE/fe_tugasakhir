@@ -91,7 +91,7 @@ h1 {
     overflow: hidden;
     width: 510px;
     min-width: min-content;
-    margin-right: auto;
+    margin-right: 85px;
     height: 410px;
     min-width: max-content;
 }
@@ -156,4 +156,17 @@ tr {
     right: 40px;
     bottom: 25px;
     position: fixed;
+}
+
+.att_history {
+    align-items: center;
+    background-color: white;
+    padding: 20px;
+    border-radius: 20px;
+    overflow: hidden;
+    width: 510px;
+    min-width: min-content;
+    margin-right: auto;
+    height: 410px;
+    min-width: max-content;
 }

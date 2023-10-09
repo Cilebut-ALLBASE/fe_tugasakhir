@@ -5,7 +5,6 @@ import '../styles/home-style.css';
 import present from '../assets/Present-bg.png';
 import absent from '../assets/Absent-bg.png';
 import Calendar from '../components/calendar';
-import TableComponent from '../components/table/tablecomponent';
 import Leave_history from '../components/table/history-leave';
 
 export const Home = () => {
