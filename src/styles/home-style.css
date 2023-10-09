@@ -1,9 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
 .absolute {
     position: absolute;
     width: calc(100% - 350px);
     top: 50%;
     left: 52%;
     height: 95vh;
+    font-family: 'Inter', sans-serif;
+    color: #41406E;
     /* height: fit-content; */
     transform: translate(-40%, -50%);
     background-color: #F6F7FB;
@@ -153,6 +157,7 @@ tr {
 .kalender {
     /* top: 390px;
     right: 50px; */
+    font-family: 'Inter', sans-serif;
     right: 40px;
     bottom: 25px;
     position: fixed;
