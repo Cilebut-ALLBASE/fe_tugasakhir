@@ -130,11 +130,9 @@ export const Leave = () => {
                     <button type="submit" className="button-submit">Submit</button>
                     <button type="back" className="button-back">Back</button>
                 </form>
-                <div className="box2">
-                </div>
+                <div className="box2"></div>
             </div>
             <Sidebar />
         </div>
-
     )
 }

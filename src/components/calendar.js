@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { format, addMonths, subMonths, startOfMonth, endOfMonth, isSameMonth, isToday } from 'date-fns';
 import { addDays, startOfWeek, endOfWeek } from 'date-fns';
-import '../styles/calendar-style.css'
-
+import '../styles/calendar-style.css';
 
 const Calendar = () => {
     const [currentDate, setCurrentDate] = useState(new Date());
@@ -12,19 +11,19 @@ const Calendar = () => {
         return (
             <div className="header ">
                 <div className="column col-start">
-                    <div className="icon" onClick={prevMonth}> {/* Ini adalah panah mengarah ke kiri*/}
+                    <div className="icon" onClick={prevMonth}>
                         <svg className='panah' xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none" transform="scale(-1, 1)">
-                            <path d="M5.81689 12.325L9.6419 8.5L5.8169 4.675L7.00023 3.5L12.0002 8.5L7.00023 13.5L5.81689 12.325Z" fill="#848A95" />
+                            <path d="M5.81689 12.325L9.6419 8.50000L5.8169 4.67500L7.00023 3.50000L12.0002 8.50000L7.00023 13.5000L5.81689 12.325Z" fill="#848A95" />
                         </svg>
                     </div>
                 </div>
                 <div className="column col-center">
                     <span>{format(currentDate, dateFormat)}</span>
                 </div>
-                <div className="column col-end" onClick={nextMonth}> {/* Ini adalah panah mengarah ke kanan */}
+                <div className="column col-end" onClick={nextMonth}>
                     <div className="icon">
                         <svg className='panah' xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none">
-                            <path d="M5.81689 12.325L9.6419 8.5L5.8169 4.675L7.00023 3.5L12.0002 8.5L7.00023 13.5L5.81689 12.325Z" fill="#848A95" />
+                            <path d="M5.81689 12.325L9.6419 8.50000L5.8169 4.67500L7.00023 3.50000L12.0002 8.50000L7.00023 13.5000L5.81689 12.325Z" fill="#848A95" />
                         </svg>
                     </div>
                 </div>
@@ -51,18 +50,15 @@ const Calendar = () => {
 
     const cells = () => {
         const monthStart = startOfMonth(currentDate);
-        const monthEnd = endOfMonth(currentDate);
-        const startDate = startOfWeek(monthStart);
-        const endDate = endOfWeek(monthEnd);
-
+        const startDate = startOfWeek(monthStart, {weekStartsOn: 0})
         const dateFormat = 'd';
         const rows = [];
-
+    
         let days = [];
         let day = startDate;
         let formattedDate = '';
-
-        while (day <= endDate) {
+    
+        while (day <= endOfMonth(monthStart)) {
             for (let i = 0; i < 7; i++) {
                 formattedDate = format(day, dateFormat);
                 const cloneDay = day;
@@ -77,7 +73,7 @@ const Calendar = () => {
                 );
                 day = addDays(day, 1);
             }
-
+    
             rows.push(
                 <div className="row" key={day}>
                     {days}
@@ -103,7 +99,6 @@ const Calendar = () => {
     return (
         <div className="calendar">
             {header()}
-            {/* {daysOfWeek()} */}
             {cells()}
         </div>
     );

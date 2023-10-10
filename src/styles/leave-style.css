@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
 .box {
     width: 77%;
     height: 700px;
@@ -21,7 +23,7 @@
 .h1-leave {
     font-size: 32px;
     font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Inter', sans-serif;
     color: #41406E;
     position: fixed;
     top: 50px;
@@ -58,8 +60,7 @@
 
 .h2-name {
     font-size: 20px;
-    font-family: Arial, Helvetica, sans-serif;
-    /* font-weight: bold; */
+    font-family: 'Inter', sans-serif;
     color: #41406E;
     position: fixed;
     top: 150px;
@@ -81,7 +82,7 @@
 
 .h2-role {
     font-size: 20px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Inter', sans-serif;
     /* font-weight: bold; */
     color: #41406E;
     position: fixed;
@@ -104,7 +105,7 @@
 
 .h2-type {
     font-size: 20px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Inter', sans-serif;
     /* font-weight: bold; */
     color: #41406E;
     position: fixed;
@@ -129,12 +130,13 @@
 .down {
     width: 192px;
     height: 124px;
+    /* font-family: 'Inter', sans-serif; */
 }
 /* css dropdown */
 
 .h2-reason {
     font-size: 20px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Inter', sans-serif;
     /* font-weight: bold; */
     color: #41406E;
     position: fixed;
@@ -180,7 +182,7 @@
 
 .h2-period {
     font-size: 20px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Inter', sans-serif;
     /* font-weight: bold; */
     color: #41406E;
     position: fixed;
@@ -203,7 +205,7 @@
 
 .h2-phone {
     font-size: 20px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Inter', sans-serif;
     /* font-weight: bold; */
     color: #41406E;
     position: fixed;
@@ -226,12 +228,12 @@
 
 .h2-emergency {
     font-size: 20px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Inter', sans-serif;
     /* font-weight: bold; */
     color: #41406E;
     position: fixed;
     top: 449px;
-    right: 355px;
+    right: 345px;
 }
 
 .box-emergency {
@@ -254,6 +256,7 @@
   font-weight: bold;
   text-align: center;
   text-decoration: none;
+  font-family: 'Inter', sans-serif;
   cursor: pointer;
   border: 2px solid #41406E;
   color: #fff;
@@ -278,6 +281,7 @@
     font-weight: bold;
     text-align: center;
     text-decoration: none;
+    font-family: 'Inter', sans-serif;
     cursor: pointer;
     border: 2px solid #41406E;
     color: #fff;

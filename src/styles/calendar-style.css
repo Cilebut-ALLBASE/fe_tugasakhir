@@ -4,7 +4,7 @@
   border-radius: 20px;
   background-color: white;
   padding: 5px;
-  font-family: Arial, sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 .panah {
@@ -19,7 +19,7 @@
 }
 
 .header {
-  font-family:'Trebuchet MS' !important;
+  font-family: 'Inter', sans-serif;
   font-weight: bold;
   border-bottom: 2px solid #E4E5E7;
   display: flex;
@@ -59,7 +59,7 @@
 }
 
 .body {
-  font-family:'Trebuchet MS' !important;
+  font-family: 'Inter', sans-serif;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
