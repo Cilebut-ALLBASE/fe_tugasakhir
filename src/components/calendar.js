@@ -50,18 +50,18 @@ const Calendar = () => {
 
     const cells = () => {
         const monthStart = startOfMonth(currentDate);
-        const startDate = startOfWeek(monthStart, {weekStartsOn: 0})
         const dateFormat = 'd';
         const rows = [];
-    
+
         let days = [];
-        let day = startDate;
+        let day = startOfWeek(monthStart);
         let formattedDate = '';
-    
+
         while (day <= endOfMonth(monthStart)) {
+            let cloneDay = day; // Anda bisa mendefinisikan cloneDay di sini
+
             for (let i = 0; i < 7; i++) {
                 formattedDate = format(day, dateFormat);
-                const cloneDay = day;
                 days.push(
                     <div
                         className={`column cell ${!isSameMonth(day, monthStart) ? 'disabled' : isToday(day) ? 'today' : ''}`}
@@ -73,7 +73,7 @@ const Calendar = () => {
                 );
                 day = addDays(day, 1);
             }
-    
+
             rows.push(
                 <div className="row" key={day}>
                     {days}
