@@ -4,8 +4,8 @@ import Sidebar from './sidebar/sidebar';
 import '../styles/home-style.css';
 import present from '../assets/Present-bg.png';
 import absent from '../assets/Absent-bg.png';
-import Calendar from '../components/calendar';
 import Leave_history from '../components/table/history-leave';
+import ReactCalendar from '../components/calendar';
 
 export const Home = () => {
   return (
@@ -26,50 +26,20 @@ export const Home = () => {
             </div>
           </div>
 
-          <div className='bungkus-kedua'>
+          <div className='status-kedua'>
             <div className='history'>
               <h4 className='h4'>Leave History</h4>
               <Leave_history />
-              {/* <table>
-                <thead>
-                  <tr>
-                    <th>Type of Leave</th>
-                    <th>Date</th>
-                    <th>Status</th>
-                  </tr>
-                </thead>
-
-                <tbody>
-                  <tr>
-                    <td>halo</td>
-                    <td>halo</td>
-                    <td>halo</td>
-                  </tr>
-                  <tr>
-                    <td>halo</td>
-                    <td>halo</td>
-                    <td>halo</td>
-                  </tr>
-                  <tr>
-                    <td>halo</td>
-                    <td>halo</td>
-                    <td>halo</td>
-                  </tr>
-                  <tr>
-                    <td>halo</td>
-                    <td>halo</td>
-                    <td>halo</td>
-                  </tr>
-                </tbody>
-              </table> */}
             </div>
 
-            <div className='clock'>
-              <LiveClock />
-            </div>
+            <div className='bungkus2element'>
+              <div className='clock'>
+                <LiveClock />
+              </div>
 
-            <div className='kalender'>
-              <Calendar />
+              <div className='kalender'>
+                <ReactCalendar />
+              </div>
             </div>
           </div>
         </div>

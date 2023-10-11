@@ -25,7 +25,7 @@ function App() {
         <Route path='/absen-history' element={<Absen_history />}></Route>
         <Route path='/leave' element={<Leave />}></Route>
         <Route path='/leave-hd' element={<LeaveHD />}></Route>
-        <Route path='/home_hr' element={<Home_hr />}></Route>
+        <Route path='/home-hr' element={<Home_hr />}></Route>
       </Routes>
     </div>
   );
