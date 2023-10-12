@@ -142,6 +142,7 @@ tr {
     height: fit-content;
     flex: 1;
     flex-shrink: 1;
+    flex-grow: 0;
     background-color: #DDB4FF;
     border-radius: 20px;
     font-size: 55px;
@@ -166,6 +167,7 @@ tr {
 .kalender {
     font-family: 'Inter', sans-serif;
     width: 100%;
+    flex-grow: 1;
 }
 
 .att_history {
