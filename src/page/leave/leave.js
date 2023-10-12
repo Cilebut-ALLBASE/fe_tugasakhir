@@ -9,8 +9,6 @@ import axios from 'axios';
 export const Leave = () => {
     const location = useLocation();
     const [editingId, setEditingId] = useState(null);
-    const http = require('http');
-
 
     useEffect(() => {
         fetchData();
