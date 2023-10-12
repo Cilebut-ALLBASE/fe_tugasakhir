@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import Calendar from "react-calendar";
 import 'react-calendar/dist/Calendar.css';
-import styles from '../styles/calendar-style.css';
+import '../styles/calendar-style.css';
 import PopupAbsen from "./Popup-absen";
-import { responsivePropType } from "react-bootstrap/esm/createUtilityClasses";
+import moment from "moment/moment";
 
 const ReactCalendar = () => {
   const [date, setDate] = useState(new Date());
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const jwtToken = localStorage.getItem('token');
+  const formattedDate = moment(date).format('YYYY-MM-DD');
 
   const onDateClick = (date) => {
     setDate(date);
@@ -16,13 +18,14 @@ const ReactCalendar = () => {
 
   const handleAbsenSubmit = (selectedOption) => {
     const data = {
-      date: date, // Tanggal yang dipilih
-      option: selectedOption, // 'present' atau 'sick'
+      date: formattedDate, // Tanggal yang dipilih
+      status: selectedOption, // 'present' atau 'sick'
     };
   
-    fetch('http://LAPTOP-A5E7H59A:5000/absen', {
+    fetch('http://LAPTOP-A5E7H59A:5000/attendance', {
       method: 'POST',
       headers: {
+        "Authorization": `Bearer ${jwtToken}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
@@ -38,7 +41,7 @@ const ReactCalendar = () => {
 
   return (
     <div>
-      <Calendar onClickDay={onDateClick} value={date} />
+      <Calendar onClickDay={onDateClick} value={date} minDate={new Date} />
       <PopupAbsen isOpen={isDialogOpen} onClose={() => setIsDialogOpen(false)} onAbsenSubmit={handleAbsenSubmit} />
     </div>
   );

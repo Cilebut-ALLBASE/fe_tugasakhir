@@ -1,11 +1,10 @@
 import React from 'react';
-import LiveClock from '../components/live-clock';
 import Sidebar from './sidebar/sidebar';
 import '../styles/home-style.css';
 import present from '../assets/Present-bg.png';
 import absent from '../assets/Absent-bg.png';
-import Calendar from '../components/calendar';
 import Leave_history from '../components/table/history-leave';
+import Attendance_history from '../components/table/history-attendance';
 
 export const Home_hr = () => {
     return (
@@ -26,14 +25,14 @@ export const Home_hr = () => {
                         </div>
                     </div>
 
-                    <div className='bungkus-kedua'>
+                    <div className='status-kedua'>
                         <div className='history'>
                             <h4 className='h4'>Leave History</h4>
                             <Leave_history />
                         </div>
-
                         <div className='att_history'>
                             <h4 className='h4'>Attendance History</h4>
+                            <Attendance_history />
                         </div>
                     </div>
                 </div>

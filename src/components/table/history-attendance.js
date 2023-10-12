@@ -1,19 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import TableComponent from './tablecomponent';
 
-const Leave_history = () => {
+const Attendance_history = () => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
+    const jwtToken = localStorage.getItem('token');
 
     const columns = [
-        { field: 'typeleave', column: 'Type of Leave' },
+        { field: 'id_users', column: 'Nama' },
         { field: 'date', column: 'Date' },
         { field: 'status', column: 'Status' },
     ];
 
     const fetchData = async () => {
         try {
-            const response = await fetch('http://LAPTOP-A5E7H59A:5000/users');
+            const response = await fetch('http://LAPTOP-A5E7H59A:5000/attendance', {
+                headers: {
+                    "Authorization": `Bearer ${jwtToken}`,
+                }
+            });
             const dataFromApi = await response.json();
             setData(dataFromApi.data);
             setLoading(false);
@@ -38,4 +43,4 @@ const Leave_history = () => {
     );
 };
 
-export default Leave_history;
+export default Attendance_history;

@@ -26,6 +26,7 @@ export const Login = () => {
 
             if (response.status === 200) {
                 const responseData = await response.json();
+                localStorage.setItem('token', responseData.body.accessToken)
                 console.log('Data Response', responseData)
                 alert('Login berhasil');
                 // Redirect ke halaman utama

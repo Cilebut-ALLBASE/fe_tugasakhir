@@ -24,11 +24,11 @@ const PopupAbsen = ({ isOpen, onClose, onAbsenSubmit }) => {
                 </div>
                 <div className='radio'>
                     <label>
-                        <input type='radio' className='present-radio' value="present" checked={selectedOption === "present"} onChange={handleOptionChange} required/>
+                        <input type='radio' className='present-radio' value="Present" checked={selectedOption === "Present"} onChange={handleOptionChange} required/>
                         Present
                     </label>
                     <label>
-                        <input type="radio" className='sick-radio' value="sick" checked={selectedOption === 'sick'} onChange={handleOptionChange} required/>
+                        <input type="radio" className='sick-radio' value="Sick" checked={selectedOption === 'Sick'} onChange={handleOptionChange} required/>
                         Sick
                     </label>
                 </div>
