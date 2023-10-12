@@ -12,6 +12,7 @@ import Absen_history from './page/absen/history-absen';
 import { Leave } from './page/leave/leave';
 import { LeaveHD } from './page/leave/leave-hd';
 import { Home_hr } from './page/home-hr';
+import  { Request } from './page/leave/request';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path='/leave' element={<Leave />}></Route>
         <Route path='/leave-hd' element={<LeaveHD />}></Route>
         <Route path='/home-hr' element={<Home_hr />}></Route>
+        <Route path='/request' element={<Request />}></Route>
       </Routes>
     </div>
   );
