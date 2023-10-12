@@ -1,12 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import '../../styles/leave-style.css';
 import { Sidebar } from '../sidebar/sidebar';
-import { useLocation } from 'react-router-dom';
+import { Await, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faBell } from '@fortawesome/free-solid-svg-icons';
+import axios from 'axios';
 
 export const Leave = () => {
     const location = useLocation();
+    const [editingId, setEditingId] = useState(null);
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+    const fetchData = async () => {
+        try {
+            const response = await axios.get('http://DESKTOP-CGH6082:5000/users');
+            setData(response.data);
+        }
+        catch (error) {
+            console.error('error fetching data:', error);
+        }
+    };
 
     const [formData, setFormData] = useState({
         name: '',
@@ -24,20 +40,50 @@ export const Leave = () => {
         setFormData({ ...formData, [name]: value});
     }
 
-    const handleSubmit = (e) => {
-        fetch('', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData),
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                console.log(data)
-            });
-        // e.preventDefault();
-        // console.log('', formData);
+    const handleSubmit = async (e) => {
+        // fetch('', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //     },
+        //     body: JSON.stringify(formData),
+        // })
+        //     .then((response) => response.json())
+        //     .then((data) => {
+        //         console.log(data)
+        //     });
+        e.preventDefault();
+        
+        if (editingId === null) {
+            try {
+                await axios.post('http://DESKTOP-CGH6082:5000/users', formData);
+                fetchData();
+                setFormData({ name:'', email: ''});
+            }
+            catch (error) {
+                console.error('error creating data:', error);
+            }
+        }
+        else {
+            try {
+                await axios.put(`http://DESKTOP-CGH6082:5000/users`, formData);
+                fetchData();
+                setFormData({
+                    name: '',
+                    position: '',
+                    type: '',
+                    reason: '',
+                    date: '',
+                    period: '',
+                    phone: '',
+                    emergency: '',
+                });
+                setEditingId(null);
+            }
+            catch (error) {
+                console.error('error updating data:', error);
+            }
+        }
     };
 
     const [date, setData] = useState();
@@ -127,7 +173,7 @@ export const Leave = () => {
                         onChange={handleChange}
                     ></input>
 
-                    <button type="submit" className="button-submit">Submit</button>
+                    <button type="submit" className="button-submit">{editingId === null ? 'Submit' : 'Update'}</button>
                     <button type="back" className="button-back">Back</button>
                 </form>
                 <div className="box2"></div>
