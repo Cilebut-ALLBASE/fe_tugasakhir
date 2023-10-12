@@ -1,30 +1,38 @@
 .bx-request {
+    display: flex;
+    flex-direction: column;
     width: 77%;
-    height: 700px;
+    height: 100%;
     background-color: #F6F7FB;
     position: fixed;
+    padding: 25px;
+    padding-left: 40px;
+    padding-right: 40px;
     top: 20px;
     right: 20px;
     border-radius: 35px;
 }
 
 .bx-request2 {
-    width: 77%;
+    width: 100%;
     height: 172px;
     background-color: #F2E5F2;
     border-radius: 35px;
     position: fixed;
-    top: 550px;
-    right: 20px;
+    bottom: 0;
 }
 
 .req {
-    font-size: 32px;
     font-weight: bold;
     font-family: 'Inter', sans-serif;
     color: #41406E;
-    /* position: fixed;
-    top: 50px;
-    left: 400px; */
+    padding-bottom: 10px;
 }
 
+.satu {
+    display: flex;
+}
+
+.dua {
+    display: flex;
+}

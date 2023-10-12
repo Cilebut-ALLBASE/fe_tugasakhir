@@ -89,6 +89,10 @@
     border-radius: 25px;
 }
 
+.active-link {
+    background-color: #DDB4FF;
+}
+
 .tab-button {
     display: flex;
     justify-content: space-around;

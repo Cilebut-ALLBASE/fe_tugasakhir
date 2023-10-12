@@ -16,7 +16,7 @@ export const Leave = () => {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get('http://DESKTOP-CGH6082:5000/users');
+            const response = await axios.get('http://LAPTOP-A5E7H59A:5000/leave');
             setData(response.data);
         }
         catch (error) {

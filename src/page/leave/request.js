@@ -20,29 +20,33 @@ export const Request = () => {
 
   const fetchData = async () => {
     try {
-        const response = await fetch('http://DESKTOP-CGH6082:5000/users');
-        const dataFromApi = await response.json();
-        setData(dataFromApi.data);
-        setLoading(false);
+      const response = await fetch('http://LAPTOP-A5E7H59A:5000/leave');
+      const dataFromApi = await response.json();
+      setData(dataFromApi.data);
+      setLoading(false);
     }
     catch (error) {
-        console.error('Error fetching data:', error);
-        setLoading(false);
+      console.error('Error fetching data:', error);
+      setLoading(false);
     }
   };
 
   useEffect(() => {
     fetchData();
   }, []);
-  
+
   return (
-    <div className='bx-request'>
-      <h1 className='req' align='center'>Request</h1>
-      <LeaveComponent
-        row = {data}
-        column = {columns}
-      />
-      <div className='bx-request2'></div>
+    <div>
+      <div className='absolute'>
+        <div className='content-home'>
+          <h2 className='req'>Request</h2>
+          <div className='satu'>
+            <LeaveComponent row={data} column={columns} />
+          </div>
+        </div>
+        
+        <div className='bx-request2'></div>
+      </div>
       <Sidebar />
     </div>
   );

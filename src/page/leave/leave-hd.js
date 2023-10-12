@@ -25,7 +25,7 @@ export const LeaveHD = () => {
     }
 
     const handleSubmit = (e) => {
-        fetch('', {
+        fetch('https://LAPTOP-A5E7H59A:5000/leave', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -55,7 +55,7 @@ export const LeaveHD = () => {
                 <h1 className="label-leave">Leave</h1>
                 <div className="tab-button">
                     <a className={`a-leave ${location.pathname === '/leave-hd' ? 'active-link' : ''}`} href="./leave-hd">Leave</a>
-                    <a className={`a-request ${location.pathname === '/request-leave' ? 'active-link' : ''}`} href="./request-leave">Request</a>
+                    <a className={`a-request ${location.pathname === '/request' ? 'active-link' : ''}`} href="./request">Request</a>
                 </div>
                 <form onSubmit={handleSubmit}>
                     <h2 className="name">Name</h2>
