@@ -187,3 +187,10 @@ tr {
     flex: 1.1;
     flex-direction: column;
 }
+
+.count {
+    float: left;
+    position:fixed;
+    font-size: 70px;
+    margin-left: 10px !important;
+}

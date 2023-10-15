@@ -7,7 +7,7 @@ const Attendance_history = () => {
     const jwtToken = localStorage.getItem('token');
 
     const columns = [
-        { field: 'id_users', column: 'Nama' },
+        { field: 'user_name', column: 'Nama' },
         { field: 'date', column: 'Date' },
         { field: 'status', column: 'Status' },
     ];

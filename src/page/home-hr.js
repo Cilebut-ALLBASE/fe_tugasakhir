@@ -5,6 +5,8 @@ import present from '../assets/Present-bg.png';
 import absent from '../assets/Absent-bg.png';
 import Leave_history from '../components/table/history-leave';
 import Attendance_history from '../components/table/history-attendance';
+import AbsentCount from '../components/absent-count';
+import PresentCount from '../components/present-count';
 
 export const Home_hr = () => {
     return (
@@ -16,11 +18,13 @@ export const Home_hr = () => {
                     <div className='status-home'>
                         <div className='present'>
                             <p>Present</p>
+                            <PresentCount />
                             <img src={present} alt='bg' className='present-bg'></img>
                         </div>
 
                         <div className='absent'>
                             <p>Absent</p>
+                            <AbsentCount />
                             <img src={absent} alt='bg' className='absent-bg'></img>
                         </div>
                     </div>

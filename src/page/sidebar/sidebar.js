@@ -1,14 +1,26 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlaneUp, faUserCheck, faSquare } from '@fortawesome/free-solid-svg-icons';
 import '../../styles/sidebar-style.css';
+import jwt_decode from "jwt-decode";
 
 export function Sidebar() {
 	const navRef = useRef();
+	const jwtToken = localStorage.getItem('token');
+
+	const getUserNameFromToken = () => {
+		if (jwtToken) {
+		  const decodedToken = jwt_decode(jwtToken);
+		  return decodedToken.name;
+		}
+		return '';
+	  };
+	
+	  const userName = getUserNameFromToken();
 
 	return (
 		<header>
-			<h3>USER</h3>
+			<h3 className="h3h3">{userName || 'USER'}</h3>
 			<nav ref={navRef}>
 				<div className="plane">
 					<FontAwesomeIcon icon={faPlaneUp} />
@@ -31,15 +43,15 @@ export function Sidebar() {
 				<a className="ovr-text" href="./home">Overview</a>
 				<br>
 				</br>
-				<a className="att-text" href="./absen">Attendance</a>  
+				<a className="att-text" href="./absen">Attendance</a>
 				<br>
 				</br>
 				<a className="lv-text" href="./leave">Leave</a>
 				<br>
 				</br>
-                
+
 			</nav>
-			
+
 		</header>
 	);
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import LiveClock from '../components/live-clock';
 import Sidebar from './sidebar/sidebar';
 import '../styles/home-style.css';
@@ -6,8 +6,11 @@ import present from '../assets/Present-bg.png';
 import absent from '../assets/Absent-bg.png';
 import Leave_history from '../components/table/history-leave';
 import ReactCalendar from '../components/calendar';
+import AbsentCount from '../components/absent-count';
+import PresentCount from '../components/present-count';
 
 export const Home = () => {
+
   return (
     <div>
       <div className='absolute'>
@@ -17,11 +20,13 @@ export const Home = () => {
           <div className='status-home'>
             <div className='present'>
               <p>Present</p>
+              <PresentCount />
               <img src={present} alt='bg' className='present-bg'></img>
             </div>
 
             <div className='absent'>
               <p>Absent</p>
+              <AbsentCount />
               <img src={absent} alt='bg' className='absent-bg'></img>
             </div>
           </div>

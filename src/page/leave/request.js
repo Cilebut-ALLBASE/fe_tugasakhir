@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { Sidebar } from '../sidebar/sidebar';
 import LeaveComponent from '../../components/table/tablecomponent';
 import '../../styles/request-style.css';
+import moment from 'moment';
 
 export const Request = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState([]);
+  const jwtToken = localStorage.getItem('token');
 
   const columns = [
     { field: 'name', column: 'Name' },
@@ -20,7 +22,11 @@ export const Request = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch('http://LAPTOP-A5E7H59A:5000/leave');
+      const response = await fetch('http://LAPTOP-A5E7H59A:5000/leave', {
+        headers: {
+          Authorization: `Bearer ${jwtToken}`,
+        }
+      });
       const dataFromApi = await response.json();
       setData(dataFromApi.data);
       setLoading(false);

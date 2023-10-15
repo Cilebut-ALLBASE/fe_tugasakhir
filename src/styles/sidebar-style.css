@@ -129,3 +129,11 @@ header {
     background-color: #b3b3b3;
     position: absolute;
 }
+
+.h3h3 {
+    color: #41406E;
+    font-weight: bold;
+    position: fixed;
+    top: 50px;
+    left: 70px;
+}
