@@ -1,30 +1,17 @@
 import React, { useEffect, useState } from "react";
 import '../../styles/leave-style.css';
 import { Sidebar } from '../sidebar/sidebar';
-import { Await, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faBell } from '@fortawesome/free-solid-svg-icons';
-import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 export const Leave = () => {
     const location = useLocation();
-    const [editingId, setEditingId] = useState(null);
-
-    useEffect(() => {
-        fetchData();
-    }, []);
-
-    const fetchData = async () => {
-        try {
-            const response = await axios.get('http://LAPTOP-A5E7H59A:5000/leave');
-            setData(response.data);
-        }
-        catch (error) {
-            console.error('error fetching data:', error);
-        }
-    };
-
-    const [formData, setFormData] = useState({
+    const [data, setData] = useState([]);
+    const [error, setError] = useState('');
+    const jwtToken = localStorage.getItem('token');
+    const [newData, setNewData] = useState({
         name: '',
         position: '',
         type: '',
@@ -33,60 +20,34 @@ export const Leave = () => {
         period: '',
         phone: '',
         emergency: '',
-    });
+    })
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value});
-    }
+    const handleCreate = async () => {
+        try {
+            const response = await fetch('http://DESKTOP-CGH6082:5000/leave', {
+                method: 'POST',
+                headers: {
+                    "Authorization": `Bearer ${jwtToken}`,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ ...newData }),
+            });
 
-    const handleSubmit = async (e) => {
-        // fetch('', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify(formData),
-        // })
-        //     .then((response) => response.json())
-        //     .then((data) => {
-        //         console.log(data)
-        //     });
-        e.preventDefault();
-        
-        if (editingId === null) {
-            try {
-                await axios.post('http://DESKTOP-CGH6082:5000/users', formData);
-                fetchData();
-                setFormData({ name:'', email: ''});
+            if (response.status === 200) {
+                alert('leave request submitted')
+                
+            } else if (response.status === 401) {
+                console.error('failed to submit');
+            } else {
+                setError('');
             }
-            catch (error) {
-                console.error('error creating data:', error);
-            }
-        }
-        else {
-            try {
-                await axios.put(`http://DESKTOP-CGH6082:5000/users`, formData);
-                fetchData();
-                setFormData({
-                    name: '',
-                    position: '',
-                    type: '',
-                    reason: '',
-                    date: '',
-                    period: '',
-                    phone: '',
-                    emergency: '',
-                });
-                setEditingId(null);
-            }
-            catch (error) {
-                console.error('error updating data:', error);
-            }
+        } catch (error) {
+            console.error('error creating data:', error);
+            setError('error!');
         }
     };
 
-    const [date, setData] = useState();
+    const [date, setDate] = useState();
 
     const [selectedOption, setSelectedOption] = useState('');
 
@@ -112,21 +73,21 @@ export const Leave = () => {
                     <input className="input-search" type="text"></input>
                 </div>
                 <h1 className="h1-leave">Leave</h1>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleCreate}>
                     <h2 className="h2-name">Name</h2>
                     <input className="box-name"
                         type="text"
                         name="name"
-                        value={formData.name}
-                        onChange={handleChange}
+                        value={newData.name}
+                        onChange={(e) => setNewData( e.target.value )}
                     ></input>
 
                     <h2 className="h2-role">Position/Role</h2>
                     <input className="box-role"
                         type="text"
                         name="position"
-                        value={formData.position}
-                        onChange={handleChange}
+                        value={newData.position}
+                        onChange={(e) => setNewData( e.target.value )}
                     ></input>
 
                     <h2 className="h2-type">Type of Leave</h2>
@@ -141,40 +102,42 @@ export const Leave = () => {
                     <input className="box-reason"
                         type="text"
                         name="reason"
-                        value={formData.reason}
-                        onChange={handleChange}
+                        value={newData.reason}
+                        onChange={(e) => setNewData( e.target.value )}
                     ></input>
 
                     <h2 className="date-1">Date</h2>
                     <input className="box-date"
                         type="date"
-                        onChange={e => setData(e.target.value)}
+                        onChange={e => setDate( e.target.value )}
                     ></input>
 
                     <h2 className="h2-period">Leave Period</h2>
                     <input className="period-box"
                         type="date"
-                        onChange={e => setData(e.target.value)}
+                        onChange={e => setDate( e.target.value )}
                     ></input>
 
                     <h2 className="h2-phone">Phone Number</h2>
                     <input className="box-phone"
                         type="number"
                         name="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
+                        value={newData.phone}
+                        onChange={(e) => setNewData( e.target.value )}
                     ></input>
 
                     <h2 className="h2-emergency">Emergency Contact</h2>
                     <input className="box-emergency"
                         type="number"
                         name="emergency"
-                        value={formData.emergency}
-                        onChange={handleChange}
+                        value={newData.emergency}
+                        onChange={(e) => setNewData( e.target.value )}
                     ></input>
 
-                    <button type="submit" className="button-submit">{editingId === null ? 'Submit' : 'Update'}</button>
-                    <button type="back" className="button-back">Back</button>
+                    <button type="submit" className="button-submit">Submit</button>
+                    <Link to="/home">
+                        <button className="button-back">Back</button>
+                    </Link>
                 </form>
                 <div className="box2"></div>
             </div>

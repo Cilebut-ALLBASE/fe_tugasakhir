@@ -25,7 +25,7 @@ export const LeaveHD = () => {
     }
 
     const handleSubmit = (e) => {
-        fetch('https://LAPTOP-A5E7H59A:5000/leave', {
+        fetch('http://DESKTOP-CGH6082:5000/leave', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
