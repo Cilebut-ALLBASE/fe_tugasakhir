@@ -1,38 +1,136 @@
-.bx-request {
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+.table-container {
     display: flex;
-    flex-direction: column;
+    width: 1000px;
+    font-family: 'Inter', sans-serif;
+    color: #41406E;
+    position: relative;
+    top: 150px;
+    left: 80px;
+    overflow-x: auto; 
+    border: 1px solid #ddd;
+}
+
+.my-table {
+    border-collapse: collapse;
+}
+
+.my-table th, .my-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    background-color: white;
+    flex: 6;
+    
+}
+
+.my-table th {
+    background-color: #F2E5F2;
+  }
+
+  .bx-request {
     width: 77%;
-    height: 100%;
+    height: 700px;
     background-color: #F6F7FB;
     position: fixed;
-    padding: 25px;
-    padding-left: 40px;
-    padding-right: 40px;
     top: 20px;
     right: 20px;
     border-radius: 35px;
 }
 
 .bx-request2 {
-    width: 100%;
+    width: 77%;
     height: 172px;
     background-color: #F2E5F2;
     border-radius: 35px;
     position: fixed;
-    bottom: 0;
+    top: 550px;
+    right: 20px;
 }
 
 .req {
+    font-size: 32px;
     font-weight: bold;
     font-family: 'Inter', sans-serif;
     color: #41406E;
-    padding-bottom: 10px;
+    position: fixed;
+    top: 50px;
+    left: 400px;
 }
 
-.satu {
-    display: flex;
+.btn-lv-submit {
+    flex-direction: row;
+    padding: 3px 15px;
+    font-size: 11px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    color: #fff;
+    margin-left: 17px;
+    border: 2px solid #00FE0A;
+    background-color: #00FE0A;
+    border-radius: 30px;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-.dua {
-    display: flex;
+.btn-lv-submit:hover {
+    background-color: #fff;
+    color: black;
+}
+
+.btn-lv-del {
+    
+    padding: 3px 15px;
+    font-size: 11px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    color: #fff;
+    border: 2px solid #FE0000;
+    background-color: #FE0000;
+    border-radius: 30px;
+    margin-left: 9px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-lv-del:hover {
+    background-color: #fff;
+    color: black;
+}
+
+/* .btn-lv-submit, .btn-lv-del {
+    
+} */
+
+.st-bell {
+    font-size: 25px;
+    position: fixed;
+    top: 55px;
+    right: 100px;
+}
+
+.st-search {
+    font-size: 25px;
+    position: fixed;
+    top: 55px;
+    right: 450px;
+}
+
+.bx-input-search {
+    width: 347px;
+    height: 46px;
+    background-color: white;
+    border-radius: 30px;
+    padding-left: 50px;
+    outline: none;
+    position: fixed;
+    top: 50px;
+    right: 140px;
+    font-size: 16px;
+    z-index: -1;
 }

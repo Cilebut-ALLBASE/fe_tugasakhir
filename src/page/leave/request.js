@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Sidebar } from '../sidebar/sidebar';
-import LeaveComponent from '../../components/table/tablecomponent';
 import { useLocation } from 'react-router-dom';
+import LeaveComponent from '../../components/table/leavecomponent';
 import '../../styles/request-style.css';
 import moment from 'moment';
+
 
 export const Request = () => {
   const location = useLocation();
@@ -45,19 +46,22 @@ export const Request = () => {
 
   return (
     <div>
-      <div className='absolute'>
-        <div className='content-home'>
-          <h2 className='req'>Request</h2>
-          <div className="tab2-button">
-            <a className={`a2-leave ${location.pathname === '/leave-hd' ? 'active-link' : ''}`} href="./leave-hd">Leave</a>
-            <a className={`a2-request ${location.pathname === '/request' ? 'active-link' : ''}`} href="./request">Request</a>
-          </div>
-          <div className='satu'>
-            <LeaveComponent row={data} column={columns} />
-          </div>
+      <div className='bx-request'>
+        {/* <div className='st-bell'>
+          <FontAwesomeIcon icon={faBell} />
         </div>
+        <div className='st-search'>
+          <FontAwesomeIcon icon={faSearch} />
+          <input className='bx-input-search' type='text'></input>
+        </div> */}
+        <h1 className='req'>Request</h1>
 
+        <LeaveComponent
+          row={data}
+          column={columns}
+        />
         <div className='bx-request2'></div>
+
       </div>
       <Sidebar />
     </div>
