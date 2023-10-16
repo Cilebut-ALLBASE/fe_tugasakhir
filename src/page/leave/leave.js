@@ -56,7 +56,7 @@ export const Leave = () => {
         
         if (editingId === null) {
             try {
-                await axios.post('http://DESKTOP-CGH6082:5000/users', formData);
+                await axios.post('http://LAPTOP-A5E7H59A:5000/users', formData);
                 fetchData();
                 setFormData({ name:'', email: ''});
             }
@@ -66,7 +66,7 @@ export const Leave = () => {
         }
         else {
             try {
-                await axios.put(`http://DESKTOP-CGH6082:5000/users`, formData);
+                await axios.put(`http://LAPTOP-A5E7H59A:5000/users`, formData);
                 fetchData();
                 setFormData({
                     name: '',

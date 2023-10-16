@@ -15,11 +15,11 @@ const Leave_history = () => {
 
     useEffect(() => {
         const decodedToken = jwt_decode(jwtToken);
-        const userId = decodedToken.id_users; // Menggunakan id_users sesuai dengan struktur database Anda
+        const name = decodedToken.name; // Menggunakan username sesuai dengan struktur database Anda
 
         const fetchData = async () => {
             try {
-                const response = await fetch(`http://LAPTOP-A5E7H59A:5000/leave?id_users=${userId}`, {
+                const response = await fetch(`http://LAPTOP-A5E7H59A:5000/leave?name=${name}`, {
                     headers: {
                         Authorization: `Bearer ${jwtToken}`,
                     }

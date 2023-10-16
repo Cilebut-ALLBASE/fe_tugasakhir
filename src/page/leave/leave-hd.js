@@ -118,7 +118,7 @@ export const LeaveHD = () => {
                         onChange={handleChange}
                     ></input>
 
-                    <h2 className="emergency">Emergency Contaact</h2>
+                    <h2 className="emergency">Emergency Contact</h2>
                     <input className="input-emergency"
                         type="number"
                         name="emergency"
