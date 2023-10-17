@@ -6,17 +6,27 @@ const LeaveComponent = (props) => {
   const [ status, setStatus ] = useState('Submit');
   const [anotherStatus, setAnotherStatus] = useState('Submit');
   const jwtToken = localStorage.getItem('token');
+  console.log(row)
 
-  const handleStatusChange = (newStatus, statusUpdater) => {
+  const handleStatusChange = (newStatus, id, item) => {
     setStatus('Menyimpan');
+    
   
-    fetch('http://DESKTOP-CGH6082:5000/leave/idleave', {
+    fetch(`http://DESKTOP-CGH6082:5000/leave/${id}`, {
       method: 'PATCH', 
       headers: {
         'Content-Type': 'application/json',
         "Authorization": `Bearer ${jwtToken}`,
       },
-      body: JSON.stringify({ decision: newStatus}), 
+      body: JSON.stringify({ 
+        role: item.role,
+        type: item.type,
+        reason: item.reason,
+        date: item.date,
+        period: item.period,
+        phone: item.phone,
+        emergency: item.emergency,
+        status: newStatus }), 
     })
       .then(response => {
         if (!response.ok) {
@@ -34,12 +44,12 @@ const LeaveComponent = (props) => {
       });
   };
   
-  const handleApprove = () => {
-    handleStatusChange('Approved', setStatus);
+  const handleApprove = (item) => {
+    handleStatusChange('Approved', item.id, setStatus);
   }
 
-  const handleRejected = () => {
-    handleStatusChange('Rejected', setAnotherStatus);
+  const handleRejected = (item) => {
+    handleStatusChange('Rejected', item.id, setAnotherStatus);
   }
 
   if (!row || !column) {
@@ -64,8 +74,8 @@ const LeaveComponent = (props) => {
               ))}
                 <td>
                   <div style={{width: 200}}>
-                    <button onClick={() => handleApprove('Accepted')} disabled={status !== 'Submit'} className='btn-lv-submit'>Approve</button> 
-                    <button onClick={() => handleRejected('Denied')} disabled={status !== 'Submit'} className='btn-lv-del'>Reject</button>
+                    <button onClick={() => handleApprove(item)} disabled={item.status !== 'Pending'} className='btn-lv-submit'>Approve</button> 
+                    <button onClick={() => handleRejected(item)} disabled={item.status !== 'Pending'} className='btn-lv-del'>Reject</button>
                   </div>
                 </td>   
             </tr>
