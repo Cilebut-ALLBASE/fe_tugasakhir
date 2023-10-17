@@ -3,12 +3,14 @@
 .table-container {
     display: flex;
     width: 1000px;
+    height: 500px   ;
     font-family: 'Inter', sans-serif;
     color: #41406E;
     position: relative;
     top: 150px;
     left: 80px;
     overflow-x: auto; 
+    overflow-y: auto;
     border: 1px solid #ddd;
 }
 
@@ -47,6 +49,7 @@
     position: fixed;
     top: 550px;
     right: 20px;
+    z-index: -1;
 }
 
 .req {
@@ -57,6 +60,7 @@
     position: fixed;
     top: 50px;
     left: 400px;
+
 }
 
 .btn-lv-submit {
@@ -82,7 +86,6 @@
 }
 
 .btn-lv-del {
-    
     padding: 3px 15px;
     font-size: 11px;
     font-weight: bold;
@@ -103,8 +106,20 @@
     color: black;
 }
 
-/* .btn-lv-submit, .btn-lv-del {
-    
+/* .btn-lv-submit:disabled {
+    cursor: not-allowed;
+}
+
+.btn-lv-del:disabled {
+    cursor: not-allowed;
+}
+
+.btn-lv-submit[status="Selesai"] {
+    background-color: #00FE0A;
+}
+
+.btn-lv-del[status="Menyimpan"] {
+    background-color: yellow;
 } */
 
 .st-bell {

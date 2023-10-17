@@ -4,24 +4,39 @@ import './../../styles/request-style.css';
 const LeaveComponent = (props) => {
   const { row, column } = props;
   const [ data, setData ] = useState([]);
-  const [ status, setStatus ] = useState(null)
+  const [ status, setStatus ] = useState('Submit');
+  const jwtToken = localStorage.getItem('token');
+
+  const handleButtonClick = (newStatus) => {
+    setStatus('Menyimpan');
+
+  fetch('http://DESKTOP-CGH6082:5000/leave/1', {
+    method: 'PATCH', 
+    headers: {
+      'Content-Type': 'application/json',
+      "Authorization": `Bearer ${jwtToken}`,
+    },
+    body: JSON.stringify({ decision: newStatus}), 
+  })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log('Data dari API:', data);
+      setStatus(newStatus);
+    })
+    .catch(error => {
+      console.log('Error:', error);
+      setStatus('Gagal');
+    });
+  };
 
   if (!row || !column) {
     return <div>Loading...</div>;
   }
-
-  const handleApprove = itemId => {
-    setData(prevData => {
-      return prevData.map(item => 
-        item.id == itemId ? { ...item, status: 'Approve' } : item );
-    });
-  };
-
-  const handleReject = itemId => {
-    setData(prevData => {
-      return prevData.filter(item => item.id !== itemId);
-    });
-  };
 
   return (
     <div className='table-container'>
@@ -41,8 +56,8 @@ const LeaveComponent = (props) => {
               ))}
                 <td>
                   <div style={{width: 200}}>
-                    <button onClick={() => handleApprove()} className='btn-lv-submit'>Approve</button> 
-                    <button onClick={() => handleReject()} className='btn-lv-del'>Reject</button>
+                    <button onClick={() => handleButtonClick('Accepted')} disabled={status !== 'Submit'} className='btn-lv-submit'>Approve</button> 
+                    <button onClick={() => handleButtonClick('Denied')} disabled={status !== 'Submit'} className='btn-lv-del'>Reject</button>
                   </div>
                 </td>   
             </tr>

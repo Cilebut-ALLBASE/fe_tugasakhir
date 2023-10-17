@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import '../../styles/leave-hd-style.css';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import { Sidebar } from '../sidebar/sidebar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faBell } from '@fortawesome/free-solid-svg-icons';
 
 export const LeaveHD = () => {
     const location = useLocation();
-
-    const [formData, setFormData] = useState({
+    const [data, setData] = useState([]);
+    const [error, setError] = useState('');
+    const jwtToken = localStorage.getItem('token');
+    const [newData, setNewData] = useState({
         name: '',
-        position: '',
+        role: '',
         type: '',
         reason: '',
         date: '',
@@ -19,28 +21,46 @@ export const LeaveHD = () => {
         emergency: '',
     });
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-    }
-
-    const handleSubmit = (e) => {
-        fetch('http://DESKTOP-CGH6082:5000/leave', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData),
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                console.log(data)
+    const handleCreate = async (e) => {
+        e.preventDefault(); // Mencegah pengiriman permintaan POST langsung
+        try {
+            const response = await fetch('http://DESKTOP-CGH6082:5000/leave', {
+                method: 'POST',
+                headers: {
+                    "Authorization": `Bearer ${jwtToken}`,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(newData),
             });
+
+            if (response.status === 200) {
+                alert('Leave request submitted');
+            } else if (response.status === 401) {
+                console.error('Failed to submit');
+            } else {
+                setError('');
+            }
+        } catch (error) {
+            console.error('Error creating data:', error);
+            setError('Error!');
+        }
     };
 
-    const [date, setData] = useState();
+    const [date, setDate] = useState('');
 
-    const [role, setRole] = useState('');
+    const [selectedOption, setSelectedOption] = useState('');
+
+    const dropdownOptions = [
+        'Annual Leave',
+        'Hospitalization',
+        'Marriage',
+        'Other',
+    ];
+
+    const handleDropdownChange = (event) => {
+        setSelectedOption(event.target.value);
+        setNewData({ ...newData, type: event.target.value });
+    }
 
     return (
         <div>
@@ -57,77 +77,84 @@ export const LeaveHD = () => {
                     <a className={`a-leave ${location.pathname === '/leave-hd' ? 'active-link' : ''}`} href="./leave-hd">Leave</a>
                     <a className={`a-request ${location.pathname === '/request' ? 'active-link' : ''}`} href="./request">Request</a>
                 </div>
-                <form onSubmit={handleSubmit}>
-                    <h2 className="name">Name</h2>
-                    <input className="input-name"
+                <form onSubmit={handleCreate}>
+                    <h2 className="h2-name">Name</h2>
+                    <input
+                        className="box-name"
                         type="text"
                         name="name"
-                        value={formData.name}
-                        onChange={handleChange}
+                        value={newData.name}
+                        onChange={(e) => setNewData({ ...newData, name: e.target.value })}
                     ></input>
 
-                    <h2 className="role">Position/Role</h2>
-                    <input className="input-role"
+                    <h2 className="h2-role">Role</h2>
+                    <input
+                        className="box-role"
                         type="text"
-                        name="position"
-                        value={formData.position}
-                        onChange={handleChange}
+                        name="role"
+                        value={newData.role}
+                        onChange={(e) => setNewData({ ...newData, role: e.target.value })}
                     ></input>
 
-                    <h2 className="type">Type of Leave</h2>
+                    <h2 className="h2-type">Type of Leave</h2>
                     <select
-                        className='input-type'
-                        id='role'
-                        value={role}
-                        placeholder='select role'
-                        onChange={(e) => setRole(e.target.value)}
-                        required
+                        className="drop"
+                        value={selectedOption}
+                        onChange={handleDropdownChange}
                     >
-                        <option value=''>Choose one</option>
-                        <option value='Annual Leave'>Annual Leave</option>
-                        <option value='Hospitalization'>Hospitalization</option>
-                        <option value='Marriage'>Marriage</option>
-                        <option value='Other'>Other</option>
+                        <option className="down" value="">Choose one</option>
+                        {dropdownOptions.map((option, index) => (
+                            <option key={index} value={option}>{option}</option>
+                        ))}
                     </select>
 
-                    <h2 className="reason">Reason</h2>
-                    <input className="input-reason"
+                    <h2 className="h2-reason">Reason</h2>
+                    <input
+                        className="box-reason"
                         type="text"
                         name="reason"
-                        value={formData.reason}
-                        onChange={handleChange}
+                        value={newData.reason}
+                        onChange={(e) => setNewData({ ...newData, reason: e.target.value })}
                     ></input>
 
-                    <h2 className="date">Date</h2>
-                    <input className="input-date"
+                    <h2 className="date-1">Date</h2>
+                    <input
+                        className="box-date"
                         type="date"
-                        onChange={e => setData(e.target.value)}
+                        value={newData.date}
+                        onChange={(e) => setNewData({ ...newData, date: e.target.value })}
                     ></input>
 
-                    <h2 className="period">Leave Period</h2>
-                    <input className="input-period"
+                    <h2 className="h2-period">Leave Period</h2>
+                    <input
+                        className="period-box"
                         type="date"
-                        onChange={e => setData(e.target.value)}
+                        value={newData.period}
+                        onChange={(e) => setNewData({ ...newData, period: e.target.value })}
                     ></input>
 
-                    <h2 className="phone">Phone Number</h2>
-                    <input className="input-phone"
-                        type="number"
+                    <h2 className="h2-phone">Phone Number</h2>
+                    <input
+                        className="box-phone"
+                        type="text" // Menggunakan type="text" daripada "number"
                         name="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
+                        value={newData.phone}
+                        onChange={(e) => setNewData({ ...newData, phone: e.target.value })}
                     ></input>
 
-                    <h2 className="emergency">Emergency Contaact</h2>
-                    <input className="input-emergency"
-                        type="number"
+                    <h2 className="h2-emergency">Emergency Contact</h2>
+                    <input
+                        className="box-emergency"
+                        type="text" // Menggunakan type="text" daripada "number"
                         name="emergency"
-                        value={formData.emergency}
-                        onChange={handleChange}
+                        value={newData.emergency}
+                        onChange={(e) => setNewData({ ...newData, emergency: e.target.value })}
                     ></input>
 
-                    <button type="submit" className="btn-submit">Submit</button>
-                    <button type="reset" className="btn-back">Back</button>
+                    <button type="submit" className="button-submit">Submit</button>
+                    <Link to="/home">
+                        <button className="button-back">Back</button>
+                    </Link>
                 </form>
                 <div className="rect2"></div>
             </div>

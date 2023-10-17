@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import '../../styles/leave-style.css';
 import { Sidebar } from '../sidebar/sidebar';
 import { useLocation } from 'react-router-dom';
@@ -13,16 +13,17 @@ export const Leave = () => {
     const jwtToken = localStorage.getItem('token');
     const [newData, setNewData] = useState({
         name: '',
-        position: '',
+        role: '',
         type: '',
         reason: '',
         date: '',
         period: '',
         phone: '',
         emergency: '',
-    })
+    });
 
-    const handleCreate = async () => {
+    const handleCreate = async (e) => {
+        e.preventDefault(); // Mencegah pengiriman permintaan POST langsung
         try {
             const response = await fetch('http://DESKTOP-CGH6082:5000/leave', {
                 method: 'POST',
@@ -30,24 +31,23 @@ export const Leave = () => {
                     "Authorization": `Bearer ${jwtToken}`,
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ ...newData }),
+                body: JSON.stringify(newData),
             });
 
             if (response.status === 200) {
-                alert('leave request submitted')
-                
+                alert('Leave request submitted');
             } else if (response.status === 401) {
-                console.error('failed to submit');
+                console.error('Failed to submit');
             } else {
-                setError('');
+                setError('Failed!');
             }
         } catch (error) {
-            console.error('error creating data:', error);
-            setError('error!');
+            console.error('Error creating data:', error);
+            setError('Error!');
         }
     };
 
-    const [date, setDate] = useState();
+    const [date, setDate] = useState('');
 
     const [selectedOption, setSelectedOption] = useState('');
 
@@ -59,7 +59,8 @@ export const Leave = () => {
     ];
 
     const handleDropdownChange = (event) => {
-        setSelectedOption(event.target.value)
+        setSelectedOption(event.target.value);
+        setNewData({ ...newData, type: event.target.value });
     }
 
     return (
@@ -75,23 +76,29 @@ export const Leave = () => {
                 <h1 className="h1-leave">Leave</h1>
                 <form onSubmit={handleCreate}>
                     <h2 className="h2-name">Name</h2>
-                    <input className="box-name"
+                    <input
+                        className="box-name"
                         type="text"
                         name="name"
                         value={newData.name}
-                        onChange={(e) => setNewData( e.target.value )}
+                        onChange={(e) => setNewData({ ...newData, name: e.target.value })}
                     ></input>
 
-                    <h2 className="h2-role">Position/Role</h2>
-                    <input className="box-role"
+                    <h2 className="h2-role">Role</h2>
+                    <input
+                        className="box-role"
                         type="text"
-                        name="position"
-                        value={newData.position}
-                        onChange={(e) => setNewData( e.target.value )}
+                        name="role"
+                        value={newData.role}
+                        onChange={(e) => setNewData({ ...newData, role: e.target.value })}
                     ></input>
 
                     <h2 className="h2-type">Type of Leave</h2>
-                    <select className="drop" value={selectedOption} onChange={handleDropdownChange}>
+                    <select
+                        className="drop"
+                        value={selectedOption}
+                        onChange={handleDropdownChange}
+                    >
                         <option className="down" value="">Choose one</option>
                         {dropdownOptions.map((option, index) => (
                             <option key={index} value={option}>{option}</option>
@@ -99,39 +106,46 @@ export const Leave = () => {
                     </select>
 
                     <h2 className="h2-reason">Reason</h2>
-                    <input className="box-reason"
+                    <input
+                        className="box-reason"
                         type="text"
                         name="reason"
                         value={newData.reason}
-                        onChange={(e) => setNewData( e.target.value )}
+                        onChange={(e) => setNewData({ ...newData, reason: e.target.value })}
                     ></input>
 
                     <h2 className="date-1">Date</h2>
-                    <input className="box-date"
+                    <input
+                        className="box-date"
                         type="date"
-                        onChange={e => setDate( e.target.value )}
+                        value={newData.date}
+                        onChange={(e) => setNewData({ ...newData, date: e.target.value })}
                     ></input>
 
                     <h2 className="h2-period">Leave Period</h2>
-                    <input className="period-box"
+                    <input
+                        className="period-box"
                         type="date"
-                        onChange={e => setDate( e.target.value )}
+                        value={newData.period}
+                        onChange={(e) => setNewData({ ...newData, period: e.target.value })}
                     ></input>
 
                     <h2 className="h2-phone">Phone Number</h2>
-                    <input className="box-phone"
-                        type="number"
+                    <input
+                        className="box-phone"
+                        type="text" // Menggunakan type="text" daripada "number"
                         name="phone"
                         value={newData.phone}
-                        onChange={(e) => setNewData( e.target.value )}
+                        onChange={(e) => setNewData({ ...newData, phone: e.target.value })}
                     ></input>
 
                     <h2 className="h2-emergency">Emergency Contact</h2>
-                    <input className="box-emergency"
-                        type="number"
+                    <input
+                        className="box-emergency"
+                        type="text" // Menggunakan type="text" daripada "number"
                         name="emergency"
                         value={newData.emergency}
-                        onChange={(e) => setNewData( e.target.value )}
+                        onChange={(e) => setNewData({ ...newData, emergency: e.target.value })}
                     ></input>
 
                     <button type="submit" className="button-submit">Submit</button>
