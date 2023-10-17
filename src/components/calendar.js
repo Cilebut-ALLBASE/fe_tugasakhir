@@ -22,7 +22,7 @@ const ReactCalendar = () => {
       status: selectedOption, // 'present' atau 'sick'
     };
   
-    fetch('http://LAPTOP-A5E7H59A:5000/attendance', {
+    fetch('http://DESKTOP-75HF6R4:5000/attendance', {
       method: 'POST',
       headers: {
         "Authorization": `Bearer ${jwtToken}`,

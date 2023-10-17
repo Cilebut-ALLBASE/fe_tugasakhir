@@ -25,7 +25,7 @@ export const Request = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch('http://LAPTOP-A5E7H59A:5000/leave', {
+      const response = await fetch('http://DESKTOP-75HF6R4:5000/leave', {
         headers: {
           Authorization: `Bearer ${jwtToken}`,
         }

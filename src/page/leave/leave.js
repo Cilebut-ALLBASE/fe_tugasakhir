@@ -25,7 +25,7 @@ export const Leave = () => {
     const handleCreate = async (e) => {
         e.preventDefault(); // Mencegah pengiriman permintaan POST langsung
         try {
-            const response = await fetch('http://LAPTOP-A5E7H59A:5000/leave', {
+            const response = await fetch('http://DESKTOP-75HF6R4:5000/leave', {
                 method: 'POST',
                 headers: {
                     "Authorization": `Bearer ${jwtToken}`,
