@@ -29,8 +29,15 @@ export const Login = () => {
                 localStorage.setItem('token', responseData.body.accessToken)
                 console.log('Data Response', responseData)
                 alert('Login berhasil');
-                // Redirect ke halaman utama
-                navigate('/home') // Ganti '/home' dengan rute ke halaman utama Anda
+
+                const userRole = responseData.body.role;
+                if (userRole === 'staff') {
+                    navigate('/home')
+                } else if (userRole === 'hr') {
+                    navigate('/home-hr')
+                } else if (userRole === 'hd') {
+                    navigate('/home')
+                }
             } else if (response.status === 401) {
                 setError('Akun tidak terdaftar!');
             } else {
@@ -75,15 +82,15 @@ export const Login = () => {
                     </div>
 
                     <div className='input-container password-container'>
-                      <label htmlFor='pw'>Password</label>
-                      <div className='password-input-container'>
-                        <input className='input geserdikit' type={showPassword ? 'text' : 'password'} placeholder='Password' id='pw' value={password} onChange={(e) => setPassword(e.target.value)} required />
-                      </div>
-                      <div className='password-input-container1'>
-                        <button className='transparent-button' onClick={() => setShowPassword(!showPassword)}>
-                          {showPassword ? <img src={eyeOpenIcon} alt='Hide Password' className='password-icon' /> : <img src={eyeClosedIcon} alt='Show Password' className='password-icon' />}
-                        </button>
-                      </div>
+                        <label htmlFor='pw'>Password</label>
+                        <div className='password-input-container'>
+                            <input className='input geserdikit' type={showPassword ? 'text' : 'password'} placeholder='Password' id='pw' value={password} onChange={(e) => setPassword(e.target.value)} required />
+                        </div>
+                        <div className='password-input-container1'>
+                            <button className='transparent-button' onClick={() => setShowPassword(!showPassword)}>
+                                {showPassword ? <img src={eyeOpenIcon} alt='Hide Password' className='password-icon' /> : <img src={eyeClosedIcon} alt='Show Password' className='password-icon' />}
+                            </button>
+                        </div>
                     </div>
 
 
@@ -99,10 +106,10 @@ export const Login = () => {
                         </div>
 
                         <div className='input-paw'>
-                        <Link to="/register" className='link'>Belum mempunyai akun?</Link>
+                            <Link to="/register" className='link'>Belum mempunyai akun?</Link>
                         </div>
                     </div>
-                        {error && <div className='error-message'>{error}</div>}
+                    {error && <div className='error-message'>{error}</div>}
                 </div>
             </div>
         </div>
