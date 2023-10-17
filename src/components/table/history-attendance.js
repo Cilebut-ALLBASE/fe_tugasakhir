@@ -14,7 +14,7 @@ const Attendance_history = () => {
 
     const fetchData = async () => {
         try {
-            const response = await fetch('http://LAPTOP-A5E7H59A:5000/attendance', {
+            const response = await fetch('http://DESKTOP-CGH6082:5000/attendance', {
                 headers: {
                     "Authorization": `Bearer ${jwtToken}`,
                 }

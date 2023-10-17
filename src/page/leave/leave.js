@@ -25,7 +25,7 @@ export const Leave = () => {
     const handleCreate = async (e) => {
         e.preventDefault(); // Mencegah pengiriman permintaan POST langsung
         try {
-            const response = await fetch('http://LAPTOP-A5E7H59A:5000/leave', {
+            const response = await fetch('http://DESKTOP-CGH6082:5000/leave', {
                 method: 'POST',
                 headers: {
                     "Authorization": `Bearer ${jwtToken}`,
@@ -39,7 +39,7 @@ export const Leave = () => {
             } else if (response.status === 401) {
                 console.error('Failed to submit');
             } else {
-                setError('');
+                setError('Failed!');
             }
         } catch (error) {
             console.error('Error creating data:', error);

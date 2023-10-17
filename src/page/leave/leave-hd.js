@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from "react";
 import '../../styles/leave-hd-style.css';
-import { useLocation, Link } from 'react-router-dom';
 import { Sidebar } from '../sidebar/sidebar';
+import { useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faBell } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 export const LeaveHD = () => {
     const location = useLocation();
@@ -24,7 +25,7 @@ export const LeaveHD = () => {
     const handleCreate = async (e) => {
         e.preventDefault(); // Mencegah pengiriman permintaan POST langsung
         try {
-            const response = await fetch('http://LAPTOP-A5E7H59A:5000/leave', {
+            const response = await fetch('http://DESKTOP-CGH6082:5000/leave', {
                 method: 'POST',
                 headers: {
                     "Authorization": `Bearer ${jwtToken}`,
@@ -38,7 +39,7 @@ export const LeaveHD = () => {
             } else if (response.status === 401) {
                 console.error('Failed to submit');
             } else {
-                setError('');
+                setError('Failed!');
             }
         } catch (error) {
             console.error('Error creating data:', error);
@@ -64,15 +65,15 @@ export const LeaveHD = () => {
 
     return (
         <div>
-            <div className="rect">
-                <div className="bell">
+            <div className="box">
+                <div className="notif">
                     <FontAwesomeIcon icon={faBell} />
                 </div>
-                <div className="i-search">
-                    <FontAwesomeIcon icon={faSearch} />
-                    <input className="rect-search" type="text"></input>
+                <div>
+                    <FontAwesomeIcon className="search" icon={faSearch} />
+                    <input className="input-search" type="text"></input>
                 </div>
-                <h1 className="label-leave">Leave</h1>
+                <h1 className="h1-leave">Leave</h1>
                 <div className="tab-button">
                     <a className={`a-leave ${location.pathname === '/leave-hd' ? 'active-link' : ''}`} href="./leave-hd">Leave</a>
                     <a className={`a-request ${location.pathname === '/request' ? 'active-link' : ''}`} href="./request">Request</a>
@@ -156,7 +157,7 @@ export const LeaveHD = () => {
                         <button className="button-back">Back</button>
                     </Link>
                 </form>
-                <div className="rect2"></div>
+                <div className="box2"></div>
             </div>
             <Sidebar />
         </div>
