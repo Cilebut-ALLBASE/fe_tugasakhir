@@ -1,39 +1,46 @@
 import React, { useState } from 'react'
 import './../../styles/request-style.css';
-import moment from 'moment';
 
 const LeaveComponent = (props) => {
   const { row, column } = props;
-  const [ data, setData ] = useState([]);
   const [ status, setStatus ] = useState('Submit');
+  const [anotherStatus, setAnotherStatus] = useState('Submit');
   const jwtToken = localStorage.getItem('token');
 
-  const handleButtonClick = (newStatus) => {
+  const handleStatusChange = (newStatus, statusUpdater) => {
     setStatus('Menyimpan');
-
-  fetch('http://LAPTOP-A5E7H59A:5000/leave/1', {
-    method: 'PATCH', 
-    headers: {
-      'Content-Type': 'application/json',
-      "Authorization": `Bearer ${jwtToken}`,
-    },
-    body: JSON.stringify({ decision: newStatus}), 
-  })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      return response.json();
+  
+    fetch('http://DESKTOP-CGH6082:5000/leave/idleave', {
+      method: 'PATCH', 
+      headers: {
+        'Content-Type': 'application/json',
+        "Authorization": `Bearer ${jwtToken}`,
+      },
+      body: JSON.stringify({ decision: newStatus}), 
     })
-    .then(data => {
-      console.log('Data dari API:', data);
-      setStatus(newStatus);
-    })
-    .catch(error => {
-      console.log('Error:', error);
-      setStatus('Gagal');
-    });
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log('Data dari API:', data);
+        setStatus(newStatus);  // Pindahkan ini ke sini
+      })
+      .catch(error => {
+        console.log('Error:', error);
+        setStatus('Gagal');
+      });
   };
+  
+  const handleApprove = () => {
+    handleStatusChange('Approved', setStatus);
+  }
+
+  const handleRejected = () => {
+    handleStatusChange('Rejected', setAnotherStatus);
+  }
 
   if (!row || !column) {
     return <div>Loading...</div>;
@@ -53,19 +60,14 @@ const LeaveComponent = (props) => {
           {row.map((item) => (
             <tr key={item.id}>
               {column.map((col) => (
-                <td key={col.field}>
-                  {col.field === 'date' || col.field === 'period' ?
-                    moment(item[col.field]).format('YYYY-MM-DD') :
-                    item[col.field]
-                  }
-                </td>
+                <td key={col.field}>{item[col.field]}</td>
               ))}
-              <td>
-                <div style={{width: 200}}>
-                  <button onClick={() => handleButtonClick('Accepted')} disabled={status !== 'Submit'} className='btn-lv-submit'>Approve</button> 
-                  <button onClick={() => handleButtonClick('Denied')} disabled={status !== 'Submit'} className='btn-lv-del'>Reject</button>
-                </div>
-              </td>
+                <td>
+                  <div style={{width: 200}}>
+                    <button onClick={() => handleApprove('Accepted')} disabled={status !== 'Submit'} className='btn-lv-submit'>Approve</button> 
+                    <button onClick={() => handleRejected('Denied')} disabled={status !== 'Submit'} className='btn-lv-del'>Reject</button>
+                  </div>
+                </td>   
             </tr>
           ))}
         </tbody>

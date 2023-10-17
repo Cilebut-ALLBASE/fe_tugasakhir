@@ -18,7 +18,7 @@ const Leave_history_getAll = () => {
 
         const fetchData = async () => {
             try {
-                const response = await fetch(`http://LAPTOP-A5E7H59A:5000/leave`, {
+                const response = await fetch(`http://DESKTOP-CGH6082:5000/leave`, {
                     headers: {
                         Authorization: `Bearer ${jwtToken}`,
                     }
