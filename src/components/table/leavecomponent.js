@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import './../../styles/request-style.css';
+import moment from 'moment';
 
 const LeaveComponent = (props) => {
   const { row, column } = props;
@@ -10,7 +11,7 @@ const LeaveComponent = (props) => {
   const handleButtonClick = (newStatus) => {
     setStatus('Menyimpan');
 
-  fetch('http://DESKTOP-CGH6082:5000/leave/1', {
+  fetch('http://LAPTOP-A5E7H59A:5000/leave/1', {
     method: 'PATCH', 
     headers: {
       'Content-Type': 'application/json',
@@ -52,14 +53,19 @@ const LeaveComponent = (props) => {
           {row.map((item) => (
             <tr key={item.id}>
               {column.map((col) => (
-                <td key={col.field}>{item[col.field]}</td>
+                <td key={col.field}>
+                  {col.field === 'date' || col.field === 'period' ?
+                    moment(item[col.field]).format('YYYY-MM-DD') :
+                    item[col.field]
+                  }
+                </td>
               ))}
-                <td>
-                  <div style={{width: 200}}>
-                    <button onClick={() => handleButtonClick('Accepted')} disabled={status !== 'Submit'} className='btn-lv-submit'>Approve</button> 
-                    <button onClick={() => handleButtonClick('Denied')} disabled={status !== 'Submit'} className='btn-lv-del'>Reject</button>
-                  </div>
-                </td>   
+              <td>
+                <div style={{width: 200}}>
+                  <button onClick={() => handleButtonClick('Accepted')} disabled={status !== 'Submit'} className='btn-lv-submit'>Approve</button> 
+                  <button onClick={() => handleButtonClick('Denied')} disabled={status !== 'Submit'} className='btn-lv-del'>Reject</button>
+                </div>
+              </td>
             </tr>
           ))}
         </tbody>

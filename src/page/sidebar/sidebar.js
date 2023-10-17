@@ -32,7 +32,7 @@ export function Sidebar() {
 	const userRole = getRoleFromToken(); 
 
 	const menus = [
-		{ name: 'Home', url: '/home', roles: ['staff', 'hr', 'hd'] },
+		{ name: 'Home', url: '/home', roles: ['staff', 'hd'] },
 		{ name: 'Attendance', url: '/absen', roles: ['staff', 'hd', "hr"] },
 		{ name: 'Leave', url: '/leave', roles: ['staff', "hr"] },
 		{ name: 'Home', url: '/home-hr', roles: ['hr'] },

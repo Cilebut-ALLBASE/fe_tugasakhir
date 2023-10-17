@@ -9,6 +9,7 @@
     padding-left: 80px;
     padding-right: 90px;
     position: fixed;
+    width: 270px;
     top: 150px;
     left: 40px;
     transition: 0.3s;
@@ -33,6 +34,7 @@ header {
     padding-left: 80px;
     padding-right: 70px;
     position: fixed;
+    width: 270px;
     top: 230px;
     left: 40px;
     transition: 0.3s;
@@ -53,6 +55,7 @@ header {
     padding-left: 80px;
     padding-right: 120px;
     position: fixed;
+    width: 270px;
     top: 310px;
     left: 40px;
     transition: 0.3s;
