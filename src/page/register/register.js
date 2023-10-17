@@ -17,7 +17,7 @@ export const Register = () => {
 
     const handleRegister = async () => {
         try {
-            const response = await fetch('http://DESKTOP-CGH6082:5000/users', {
+            const response = await fetch('http://LAPTOP-A5E7H59A:5000/users', {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${jwtToken}`,

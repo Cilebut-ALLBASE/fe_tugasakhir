@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Sidebar } from '../sidebar/sidebar';
+import { useLocation } from 'react-router-dom';
 import LeaveComponent from '../../components/table/leavecomponent';
 import '../../styles/request-style.css';
 import moment from 'moment';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBell, faSearch } from '@fortawesome/free-solid-svg-icons';
 
 
 export const Request = () => {
+  const location = useLocation();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState([]);
   const jwtToken = localStorage.getItem('token');
@@ -25,7 +25,7 @@ export const Request = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch('http://DESKTOP-CGH6082:5000/leave', {
+      const response = await fetch('http://LAPTOP-A5E7H59A:5000/leave', {
         headers: {
           Authorization: `Bearer ${jwtToken}`,
         }
@@ -46,24 +46,24 @@ export const Request = () => {
 
   return (
     <div>
-      <div className='bx-request'> 
-      <div className='st-bell'>
-        <FontAwesomeIcon icon={faBell} />
-      </div>
-      <div className='st-search'>
-        <FontAwesomeIcon icon={faSearch} />
-        <input className='bx-input-search' type='text'></input>
-      </div>
-      <h1 className='req'>Request</h1>
-      
-      <LeaveComponent
-        row = {data}
-        column = {columns}
-      />
-      <div className='bx-request2'></div>
+      <div className='bx-request'>
+        {/* <div className='st-bell'>
+          <FontAwesomeIcon icon={faBell} />
+        </div>
+        <div className='st-search'>
+          <FontAwesomeIcon icon={faSearch} />
+          <input className='bx-input-search' type='text'></input>
+        </div> */}
+        <h1 className='req'>Request</h1>
 
-    </div>
-    <Sidebar />
+        <LeaveComponent
+          row={data}
+          column={columns}
+        />
+        <div className='bx-request2'></div>
+
+      </div>
+      <Sidebar />
     </div>
   );
 };

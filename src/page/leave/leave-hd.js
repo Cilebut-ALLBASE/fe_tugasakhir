@@ -21,29 +21,23 @@ export const LeaveHD = () => {
         emergency: '',
     });
 
-    const handleCreate = async (e) => {
-        e.preventDefault(); // Mencegah pengiriman permintaan POST langsung
-        try {
-            const response = await fetch('http://DESKTOP-CGH6082:5000/leave', {
-                method: 'POST',
-                headers: {
-                    "Authorization": `Bearer ${jwtToken}`,
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(newData),
-            });
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+    }
 
-            if (response.status === 200) {
-                alert('Leave request submitted');
-            } else if (response.status === 401) {
-                console.error('Failed to submit');
-            } else {
-                setError('');
-            }
-        } catch (error) {
-            console.error('Error creating data:', error);
-            setError('Error!');
-        }
+    const handleSubmit = (e) => {
+        fetch('http://DESKTOP-CGH6082:5000/leave', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data)
+            });
     };
 
     const [date, setDate] = useState('');

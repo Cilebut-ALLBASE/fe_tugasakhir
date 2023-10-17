@@ -58,6 +58,24 @@
     left: 400px;
 }
 
+.a2-leave, .a2-request {
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
+    font-size: 23px;
+    color: #41406E;
+    padding: 35px;
+    padding-top: 5px;
+    padding-bottom: 6px;
+    border-radius: 25px;
+    transition: 0.3s;
+    position: relative;
+}
+
+.a2-leave:hover, .a2-request:hover {
+    background-color: #DDB4FF;
+}
+
 .a-leave, .a-request {
     text-decoration: none;
     font-family: 'Inter', sans-serif;
@@ -98,6 +116,14 @@
     justify-content: space-around;
     margin-bottom: 20px;
     width: 100%;
+}
+
+.tab2-button {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    width: 100%;
+    top: 0;
 }
 
 .tab-button-cover {
