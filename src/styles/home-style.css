@@ -91,6 +91,8 @@ h1 {
     padding: 20px;
     border-radius: 20px;
     margin-right: 85px;
+    overflow-y: auto;
+    max-height: 56vh;
     height: 100%;
     width: fit-content;
 }

@@ -39,7 +39,7 @@ export const Leave = () => {
             } else if (response.status === 401) {
                 console.error('Failed to submit');
             } else {
-                setError('');
+                setError('Failed!');
             }
         } catch (error) {
             console.error('Error creating data:', error);

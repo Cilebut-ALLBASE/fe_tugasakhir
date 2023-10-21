@@ -7,6 +7,7 @@ import Leave_history from '../components/table/history-leave';
 import Attendance_history from '../components/table/history-attendance';
 import AbsentCount from '../components/absent-count';
 import PresentCount from '../components/present-count';
+import Leave_history_getAll from '../components/table/history-leave-getAll';
 
 export const Home_hr = () => {
     return (
@@ -32,7 +33,7 @@ export const Home_hr = () => {
                     <div className='status-kedua'>
                         <div className='history'>
                             <h4 className='h4'>Leave History</h4>
-                            <Leave_history />
+                            <Leave_history_getAll />
                         </div>
                         <div className='att_history'>
                             <h4 className='h4'>Attendance History</h4>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import TableComponent from './tablecomponent';
 import jwt_decode from 'jwt-decode';
 
-const Leave_history = () => {
+const Leave_history_getAll = () => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const jwtToken = localStorage.getItem('token');
@@ -15,11 +15,10 @@ const Leave_history = () => {
 
     useEffect(() => {
         const decodedToken = jwt_decode(jwtToken);
-        const id_users = decodedToken.id_users; // Menggunakan id_users sesuai dengan struktur database Anda
 
         const fetchData = async () => {
             try {
-                const response = await fetch(`http://DESKTOP-75HF6R4:5000/leave/idleave`, {
+                const response = await fetch(`http://DESKTOP-CGH6082:5000/leave`, {
                     headers: {
                         Authorization: `Bearer ${jwtToken}`,
                     }
@@ -46,4 +45,4 @@ const Leave_history = () => {
     );
 };
 
-export default Leave_history;
+export default Leave_history_getAll;
