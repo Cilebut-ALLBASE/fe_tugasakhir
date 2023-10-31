@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react';
+import Logout from '../../components/logout';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlaneUp, faUserCheck, faSquare } from '@fortawesome/free-solid-svg-icons';
 import '../../styles/sidebar-style.css';
@@ -87,6 +88,7 @@ export function Sidebar() {
 							return null;
 						}
 					})}
+					<Logout />
 			</nav>
 		</header>
 	);
