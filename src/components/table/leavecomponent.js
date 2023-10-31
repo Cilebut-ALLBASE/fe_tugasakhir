@@ -1,38 +1,41 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './../../styles/request-style.css';
 import moment from 'moment';
 
 const LeaveComponent = (props) => {
   const { row, column } = props;
-  const [ data, setData ] = useState([]);
-  const [ status, setStatus ] = useState('Submit');
+  const [status, setStatus] = useState('Submit');
   const jwtToken = localStorage.getItem('token');
+  console.log(row);
+  const refreshPage = () => {
+    window.location.reload();
+  };
 
-  const handleButtonClick = (newStatus) => {
+  const handleStatusChange = (newStatus, id) => {
     setStatus('Menyimpan');
 
-  fetch('http://LAPTOP-A5E7H59A:5000/leave/1', {
-    method: 'PATCH', 
-    headers: {
-      'Content-Type': 'application/json',
-      "Authorization": `Bearer ${jwtToken}`,
-    },
-    body: JSON.stringify({ decision: newStatus}), 
-  })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      return response.json();
+    fetch(`http://LAPTOP-A5E7H59A:5000/leave/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        "Authorization": `Bearer ${jwtToken}`,
+      },
+      body: JSON.stringify({ status: newStatus }),
     })
-    .then(data => {
-      console.log('Data dari API:', data);
-      setStatus(newStatus);
-    })
-    .catch(error => {
-      console.log('Error:', error);
-      setStatus('Gagal');
-    });
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log('Status telah diperbarui:', data.status);
+        setStatus(data.status); // Memperbarui status setelah berhasil
+        refreshPage();
+      })
+      .catch(error => {
+        console.log('Error:', error);
+      });
   };
 
   if (!row || !column) {
@@ -45,7 +48,7 @@ const LeaveComponent = (props) => {
         <thead>
           <tr>
             {column.map((col) => (
-              <th style={{width: 700}} key={col.field}>{col.column}</th>
+              <th style={{ width: 700 }} key={col.field}>{col.column}</th>
             ))}
           </tr>
         </thead>
@@ -55,15 +58,13 @@ const LeaveComponent = (props) => {
               {column.map((col) => (
                 <td key={col.field}>
                   {col.field === 'date' || col.field === 'period' ?
-                    moment(item[col.field]).format('YYYY-MM-DD') :
-                    item[col.field]
-                  }
+                    moment(item[col.field]).format('YYYY-MM-DD') : item[col.field]}
                 </td>
               ))}
               <td>
-                <div style={{width: 200}}>
-                  <button onClick={() => handleButtonClick('Accepted')} disabled={status !== 'Submit'} className='btn-lv-submit'>Approve</button> 
-                  <button onClick={() => handleButtonClick('Denied')} disabled={status !== 'Submit'} className='btn-lv-del'>Reject</button>
+                <div style={{ width: 200 }}>
+                  <button onClick={() => handleStatusChange('Accepted', item.id)} disabled={item.status !== 'Pending'} className='btn-lv-submit'>Approve</button>
+                  <button onClick={() => handleStatusChange('Denied', item.id)} disabled={item.status !== 'Pending'} className='btn-lv-del'>Reject</button>
                 </div>
               </td>
             </tr>

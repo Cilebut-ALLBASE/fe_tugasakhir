@@ -41,7 +41,7 @@ const ReactCalendar = () => {
 
   return (
     <div>
-      <Calendar onClickDay={onDateClick} value={date} minDate={new Date} />
+      <Calendar onClickDay={onDateClick} value={date} minDate={new Date} maxDate={new Date} />
       <PopupAbsen isOpen={isDialogOpen} onClose={() => setIsDialogOpen(false)} onAbsenSubmit={handleAbsenSubmit} />
     </div>
   );

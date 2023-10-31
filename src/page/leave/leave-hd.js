@@ -5,6 +5,7 @@ import { useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faBell } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
+import moment from "moment";
 
 export const LeaveHD = () => {
     const location = useLocation();
@@ -23,15 +24,19 @@ export const LeaveHD = () => {
     });
 
     const handleCreate = async (e) => {
-        e.preventDefault(); // Mencegah pengiriman permintaan POST langsung
+        e.preventDefault();
         try {
+            const dateFormatted = moment(newData.date).format('YYYY-MM-DD'); // Konversi format tanggal
+            const newDataWithFormattedDate = { ...newData, date: dateFormatted };
+            console.log('Tanggal yang akan dikirim:', dateFormatted);
+
             const response = await fetch('http://LAPTOP-A5E7H59A:5000/leave', {
                 method: 'POST',
                 headers: {
                     "Authorization": `Bearer ${jwtToken}`,
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(newData),
+                body: JSON.stringify(newDataWithFormattedDate),
             });
 
             if (response.status === 200) {

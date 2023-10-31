@@ -54,8 +54,11 @@ export const Request = () => {
           <FontAwesomeIcon icon={faSearch} />
           <input className='bx-input-search' type='text'></input>
         </div> */}
+        <div className="tab-button">
+                    <a className={`a-leave ${location.pathname === '/leave-hd' ? 'active-link' : ''}`} href="./leave-hd">Leave</a>
+                    <a className={`a-request ${location.pathname === '/request' ? 'active-link' : ''}`} href="./request">Request</a>
+                </div>
         <h1 className='req'>Request</h1>
-
         <LeaveComponent
           row={data}
           column={columns}

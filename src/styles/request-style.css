@@ -7,9 +7,9 @@
     font-family: 'Inter', sans-serif;
     color: #41406E;
     position: relative;
-    top: 150px;
+    top: 100px;
     left: 80px;
-    overflow-x: auto; 
+    /* overflow-x: auto;  */
     overflow-y: auto;
     border: 1px solid #ddd;
 }
