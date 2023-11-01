@@ -1,5 +1,6 @@
 import React from 'react';
 import { Routes, Router, Route } from 'react-router-dom';
+import ProtectedRoute from './components/protectedroute';
 import { Login } from './page/login/login';
 import { Register } from './page/register/register';
 import Home from './page/home';
@@ -12,10 +13,10 @@ import  { Request } from './page/leave/request';
 function App() {
   return (
     <div>
-      <Routes>z
+      <Routes>
         <Route path='/' element={<Login />}></Route>
         <Route path='/register' element={<Register />}></Route>
-        <Route path='/home' element={<Home />}></Route>
+        <Route path='/home' element={<ProtectedRoute><Home /></ProtectedRoute>}></Route>
         <Route path='/absen' element={<Absen />}></Route>
         <Route path='/leave' element={<Leave />}></Route>
         <Route path='/leave-hd' element={<LeaveHD />}></Route>

@@ -4,7 +4,8 @@ import moment from 'moment';
 
 const LeaveComponent = (props) => {
   const { row, column } = props;
-  const [status, setStatus] = useState('Submit');
+  const [ data, setData ] = useState([]);
+  const [ status, setStatus ] = useState('Submit');
   const jwtToken = localStorage.getItem('token');
   console.log(row);
   const refreshPage = () => {
@@ -71,6 +72,7 @@ const LeaveComponent = (props) => {
           ))}
         </tbody>
       </table>
+      <p>Status: {status}</p>
     </div>
   );
 };

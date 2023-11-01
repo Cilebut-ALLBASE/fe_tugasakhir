@@ -17,7 +17,7 @@ const ReactCalendar = () => {
   };
 
   const handleAbsenSubmit = (selectedOption) => {
-    const data = {
+    let data = {
       date: formattedDate, // Tanggal yang dipilih
       status: selectedOption, // 'present' atau 'sick'
     };

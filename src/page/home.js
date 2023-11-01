@@ -1,6 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Navigate } from 'react-router-dom';
 import LiveClock from '../components/live-clock';
 import Sidebar from './sidebar/sidebar';
+import jwtDecode from 'jwt-decode';
 import '../styles/home-style.css';
 import present from '../assets/Present-bg.png';
 import absent from '../assets/Absent-bg.png';
@@ -10,6 +12,30 @@ import AbsentCount from '../components/absent-count';
 import PresentCount from '../components/present-count';
 
 export const Home = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+    useEffect(() => {
+        // Cek otentikasi di sini dengan memeriksa token yang ada di penyimpanan lokal
+        const token = localStorage.getItem('token');
+        if (token) {
+            // Lakukan verifikasi token atau logika otentikasi sesuai kebutuhan Anda
+            // Contoh: Anda bisa menggunakan library jwt-decode untuk mendekode token
+            // dan memeriksa apakah token masih valid.
+            const decodedToken = jwtDecode(token);
+            if (decodedToken.exp > Date.now() / 1000) {
+                setIsAuthenticated(true);
+            }
+            // (Periksa token dengan metode yang sesuai untuk aplikasi Anda)
+
+            // Contoh sederhana: Kami anggap pengguna otentikasi selama token ada.
+            // setIsAuthenticated(true);
+        }
+    }, []); 
+
+    if (!isAuthenticated) {
+      // Jika pengguna tidak diotentikasi, Anda bisa mengarahkan mereka ke halaman login atau melakukan tindakan lain sesuai kebijakan otentikasi Anda.
+      return <Navigate to="/" />;
+    }
 
   return (
     <div>
