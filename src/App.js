@@ -1,6 +1,5 @@
 import React from 'react';
 import { Routes, Router, Route } from 'react-router-dom';
-import ProtectedRoute from './components/protectedroute';
 import { Login } from './page/login/login';
 import { Register } from './page/register/register';
 import Home from './page/home';
@@ -16,7 +15,7 @@ function App() {
       <Routes>z
         <Route path='/' element={<Login />}></Route>
         <Route path='/register' element={<Register />}></Route>
-        <Route path='/home' element={<ProtectedRoute><Home /></ProtectedRoute>}></Route>
+        <Route path='/home' element={<Home />}></Route>
         <Route path='/absen' element={<Absen />}></Route>
         <Route path='/leave' element={<Leave />}></Route>
         <Route path='/leave-hd' element={<LeaveHD />}></Route>
