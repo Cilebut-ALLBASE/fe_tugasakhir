@@ -13,7 +13,7 @@ function ProtectedRoute({ children }) {
 
     if (token) {
       // Lakukan permintaan ke server untuk memeriksa otentikasi pengguna dengan menggunakan token
-      fetch('http://LAPTOP-A5E7H59A:5000/check/protected', {
+      fetch('http://DESKTOP-75HF6R4:5000/check/protected', {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}` // Mengirim token dalam header Authorization

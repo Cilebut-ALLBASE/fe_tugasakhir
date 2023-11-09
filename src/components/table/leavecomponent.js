@@ -15,7 +15,7 @@ const LeaveComponent = (props) => {
   const handleStatusChange = (newStatus, id) => {
     setStatus('Menyimpan');
 
-    fetch(`http://LAPTOP-A5E7H59A:5000/leave/${id}`, {
+    fetch(`http://DESKTOP-75HF6R4:5000/leave/${id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',

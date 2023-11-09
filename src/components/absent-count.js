@@ -7,7 +7,7 @@ const AbsentCount = () => {
 
         const fetchData = async () => {
             try {
-                const response = await fetch('http://LAPTOP-A5E7H59A:5000/attendance', {
+                const response = await fetch('http://DESKTOP-75HF6R4:5000/attendance', {
                     headers: {
                         Authorization: `Bearer ${jwtToken}`,
                     }
