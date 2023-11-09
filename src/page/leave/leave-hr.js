@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import moment from "moment";
 import ProtectedRoute from "../../components/protectedroute";
 
-export const LeaveHD = () => {
+export const LeaveHR = () => {
     const location = useLocation();
     const [data, setData] = useState([]);
     const [error, setError] = useState('');
@@ -31,7 +31,7 @@ export const LeaveHD = () => {
             const newDataWithFormattedDate = { ...newData, date: dateFormatted };
             console.log('Tanggal yang akan dikirim:', dateFormatted);
 
-            const response = await fetch('http://DESKTOP-75HF6R4:5000/leave', {
+            const response = await fetch('http://LAPTOP-A5E7H59A:5000/leave', {
                 method: 'POST',
                 headers: {
                     "Authorization": `Bearer ${jwtToken}`,
@@ -75,8 +75,8 @@ export const LeaveHD = () => {
                 <div className="box">
                     <h1 className="h1-leave">Leave</h1>
                     <div className="tab-button">
-                        <a className={`a-leave ${location.pathname === '/leave-hd' ? 'active-link' : ''}`} href="./leave-hd">Leave</a>
-                        <a className={`a-request ${location.pathname === '/request' ? 'active-link' : ''}`} href="./request">Request</a>
+                        <a className={`a-leave ${location.pathname === '/leave-hr' ? 'active-link' : ''}`} href="./leave-hr">Leave</a>
+                        <a className={`a-request ${location.pathname === '/request-hr' ? 'active-link' : ''}`} href="./request-hr">Request</a>
                     </div>
                     <form onSubmit={handleCreate}>
                         <h2 className="h2-name">Name</h2>
