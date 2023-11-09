@@ -76,6 +76,15 @@ header {
     z-index: 1;
 }
 
+.logout {
+    font-size: 35px;
+    color: #585AB2;
+    position: fixed;
+    top: 400px;
+    left: 60px;
+    z-index: 1;
+}
+
 .user {
     font-size: 35px;
     color: #585AB2;
@@ -139,4 +148,27 @@ header {
     position: fixed;
     top: 50px;
     left: 70px;
+}
+
+.logout-btn {
+    font-weight: bold;
+    background-color: white;
+    font-size: 20px;
+    color: #41406E;
+    text-decoration: none;
+    padding: 20px;
+    padding-left: 80px;
+    padding-right: 120px;
+    position: fixed;
+    width: 270px;
+    top: 390px;
+    left: 40px;
+    border: 0;
+    transition: 0.3s;
+}
+
+.logout-btn:hover {
+    background-color: #E7BDD3;
+    color: #41406E;
+    border-radius: 15px;
 }

@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import Logout from '../../components/logout';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlaneUp, faUserCheck, faSquare } from '@fortawesome/free-solid-svg-icons';
+import { faPlaneUp, faUserCheck, faSquare, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import '../../styles/sidebar-style.css';
 import jwt_decode from 'jwt-decode';
 import { Link } from 'react-router-dom';
@@ -30,9 +30,9 @@ export function Sidebar() {
 	const userName = getUserNameFromToken();
 
 	// Role user didapatkan dari token atau dari API
-	const userRole = getRoleFromToken(); 
+	const userRole = getRoleFromToken();
 
-	const menus = [
+	const menus = [ //Link Sidebar
 		{ name: 'Home', url: '/home', roles: ['staff', 'hd'] },
 		{ name: 'Attendance', url: '/absen', roles: ['staff', 'hd', "hr"] },
 		{ name: 'Leave', url: '/leave', roles: ['staff', "hr"] },
@@ -63,6 +63,9 @@ export function Sidebar() {
 				<div className="square-4">
 					<FontAwesomeIcon icon={faSquare} />
 				</div>
+				<div className="logout">
+					<FontAwesomeIcon icon={faRightFromBracket} />
+				</div>
 				{/* Tampilkan menu sesuai peran pengguna */
 					menus.map((menu, index) => {
 						let className = '';
@@ -88,7 +91,7 @@ export function Sidebar() {
 							return null;
 						}
 					})}
-					<Logout />
+				<Logout/>
 			</nav>
 		</header>
 	);

@@ -5,13 +5,16 @@ const Logout = () => {
     const navigate = useNavigate();
 
     const handleLogout = () => {
-        localStorage.removeItem('token');
-        navigate('/');
+        // Menampilkan alert konfirmasi sebelum logout
+        if (window.confirm('Anda yakin ingin logout?')) {
+            localStorage.removeItem('token');
+            navigate('/');
+        }
     };
 
     return (
         <div>
-            <button onClick={handleLogout}>Logout</button>
+            <button className='logout-btn' onClick={handleLogout}>Logout</button>
         </div>
     );
 };

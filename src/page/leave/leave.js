@@ -5,6 +5,7 @@ import { faSearch, faBell } from '@fortawesome/free-solid-svg-icons';
 import moment from 'moment'; // Import moment.js
 import { Link } from 'react-router-dom';
 import Sidebar from "../sidebar/sidebar";
+import ProtectedRoute from "../../components/protectedroute";
 
 export const Leave = () => {
     const [newData, setNewData] = useState({
@@ -64,102 +65,104 @@ export const Leave = () => {
     // ... Bagian lain dari komponen Anda ...
 
     return (
-        <div>
-            <div className="box">
-                <div className="notif">
-                    <FontAwesomeIcon icon={faBell} />
+        <ProtectedRoute>
+            <div>
+                <div className="box">
+                    <div className="notif">
+                        <FontAwesomeIcon icon={faBell} />
+                    </div>
+                    <div>
+                        <FontAwesomeIcon className="search" icon={faSearch} />
+                        <input className="input-search" type="text" />
+                    </div>
+                    <h1 className="h1-leave">Leave</h1>
+                    <form onSubmit={handleCreate}>
+                        <h2 className="h2-name">Name</h2>
+                        <input
+                            className="box-name"
+                            type="text"
+                            name="name"
+                            value={newData.name}
+                            onChange={handleInputChange}
+                        />
+
+                        <h2 className="h2-role">Role</h2>
+                        <input
+                            className="box-role"
+                            type="text"
+                            name="role"
+                            value={newData.role}
+                            onChange={handleInputChange}
+                        />
+
+                        <h2 className="h2-type">Type of Leave</h2>
+                        <select
+                            className="drop"
+                            name="type"
+                            value={newData.type}
+                            onChange={handleInputChange}
+                        >
+                            <option value="">Choose one</option>
+                            <option value="Annual Leave">Annual Leave</option>
+                            <option value="Hospitalization">Hospitalization</option>
+                            <option value="Marriage">Marriage</option>
+                            <option value="Other">Other</option>
+                        </select>
+
+                        <h2 className="h2-reason">Reason</h2>
+                        <input
+                            className="box-reason"
+                            type="text"
+                            name="reason"
+                            value={newData.reason}
+                            onChange={handleInputChange}
+                        />
+
+                        <h2 className="date-1">Date</h2>
+                        <input
+                            className="box-date"
+                            type="date"
+                            name="date"
+                            value={newData.date}
+                            onChange={handleInputChange}
+                        />
+
+                        <h2 className="h2-period">Leave Period</h2>
+                        <input
+                            className="period-box"
+                            type="date"
+                            name="period"
+                            value={newData.period}
+                            onChange={handleInputChange}
+                        />
+
+                        <h2 className="h2-phone">Phone Number</h2>
+                        <input
+                            className="box-phone"
+                            type="text"
+                            name="phone"
+                            value={newData.phone}
+                            onChange={handleInputChange}
+                        />
+
+                        <h2 className="h2-emergency">Emergency Contact</h2>
+                        <input
+                            className="box-emergency"
+                            type="text"
+                            name="emergency"
+                            value={newData.emergency}
+                            onChange={handleInputChange}
+                        />
+
+                        <button type="submit" className="button-submit">Submit</button>
+                        <Link to="/home">
+                            <button className="button-back">Back</button>
+                        </Link>
+                    </form>
+                    <div className="box2"></div>
                 </div>
-                <div>
-                    <FontAwesomeIcon className="search" icon={faSearch} />
-                    <input className="input-search" type="text" />
-                </div>
-                <h1 className="h1-leave">Leave</h1>
-                <form onSubmit={handleCreate}>
-                    <h2 className="h2-name">Name</h2>
-                    <input
-                        className="box-name"
-                        type="text"
-                        name="name"
-                        value={newData.name}
-                        onChange={handleInputChange}
-                    />
-
-                    <h2 className="h2-role">Role</h2>
-                    <input
-                        className="box-role"
-                        type="text"
-                        name="role"
-                        value={newData.role}
-                        onChange={handleInputChange}
-                    />
-
-                    <h2 className="h2-type">Type of Leave</h2>
-                    <select
-                        className="drop"
-                        name="type"
-                        value={newData.type}
-                        onChange={handleInputChange}
-                    >
-                        <option value="">Choose one</option>
-                        <option value="Annual Leave">Annual Leave</option>
-                        <option value="Hospitalization">Hospitalization</option>
-                        <option value="Marriage">Marriage</option>
-                        <option value="Other">Other</option>
-                    </select>
-
-                    <h2 className="h2-reason">Reason</h2>
-                    <input
-                        className="box-reason"
-                        type="text"
-                        name="reason"
-                        value={newData.reason}
-                        onChange={handleInputChange}
-                    />
-
-                    <h2 className="date-1">Date</h2>
-                    <input
-                        className="box-date"
-                        type="date"
-                        name="date"
-                        value={newData.date}
-                        onChange={handleInputChange}
-                    />
-
-                    <h2 className="h2-period">Leave Period</h2>
-                    <input
-                        className="period-box"
-                        type="date"
-                        name="period"
-                        value={newData.period}
-                        onChange={handleInputChange}
-                    />
-
-                    <h2 className="h2-phone">Phone Number</h2>
-                    <input
-                        className="box-phone"
-                        type="text"
-                        name="phone"
-                        value={newData.phone}
-                        onChange={handleInputChange}
-                    />
-
-                    <h2 className="h2-emergency">Emergency Contact</h2>
-                    <input
-                        className="box-emergency"
-                        type="text"
-                        name="emergency"
-                        value={newData.emergency}
-                        onChange={handleInputChange}
-                    />
-
-                    <button type="submit" className="button-submit">Submit</button>
-                    <Link to="/home">
-                        <button className="button-back">Back</button>
-                    </Link>
-                </form>
-                <div className="box2"></div>
+                <Sidebar />
             </div>
-            <Sidebar />
-        </div>
+        </ProtectedRoute>
     );
 };

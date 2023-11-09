@@ -28,7 +28,7 @@ export const Login = () => {
                 const responseData = await response.json();
                 localStorage.setItem('token', responseData.body.accessToken)
                 console.log('Data Response', responseData)
-                alert('Login berhasil');
+                alert('Login berhasil!');
 
                 const userRole = responseData.body.role;
                 if (userRole === 'staff') {

@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 import LeaveComponent from '../../components/table/leavecomponent';
 import '../../styles/request-style.css';
 import moment from 'moment';
+import ProtectedRoute from '../../components/protectedroute';
 
 
 export const Request = () => {
@@ -45,6 +46,7 @@ export const Request = () => {
   }, []);
 
   return (
+    <ProtectedRoute>
     <div>
       <div className='bx-request'>
         {/* <div className='st-bell'>
@@ -68,7 +70,9 @@ export const Request = () => {
       </div>
       <Sidebar />
     </div>
+    </ProtectedRoute>
   );
 };
+
 
 export default Request;

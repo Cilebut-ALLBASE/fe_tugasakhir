@@ -4,8 +4,8 @@ import moment from 'moment';
 
 const LeaveComponent = (props) => {
   const { row, column } = props;
-  const [ data, setData ] = useState([]);
-  const [ status, setStatus ] = useState('Submit');
+  const [data, setData] = useState([]);
+  const [status, setStatus] = useState('Submit');
   const jwtToken = localStorage.getItem('token');
   console.log(row);
   const refreshPage = () => {
@@ -31,6 +31,14 @@ const LeaveComponent = (props) => {
       })
       .then(data => {
         console.log('Status telah diperbarui:', data.status);
+        // Perbarui status pada objek yang sesuai di dalam array row
+        const updatedRow = row.map(item => {
+          if (item.id === id) {
+            return { ...item, status: data.status };
+          }
+          return item;
+        });
+        setData(updatedRow); // Perbarui data untuk memicu pembuatan ulang komponen
         setStatus(data.status); // Memperbarui status setelah berhasil
         refreshPage();
       })
@@ -38,6 +46,7 @@ const LeaveComponent = (props) => {
         console.log('Error:', error);
       });
   };
+
 
   if (!row || !column) {
     return <div>Loading...</div>;
@@ -51,6 +60,7 @@ const LeaveComponent = (props) => {
             {column.map((col) => (
               <th style={{ width: 700 }} key={col.field}>{col.column}</th>
             ))}
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -64,15 +74,22 @@ const LeaveComponent = (props) => {
               ))}
               <td>
                 <div style={{ width: 200 }}>
-                  <button onClick={() => handleStatusChange('Accepted', item.id)} disabled={item.status !== 'Pending'} className='btn-lv-submit'>Approve</button>
-                  <button onClick={() => handleStatusChange('Denied', item.id)} disabled={item.status !== 'Pending'} className='btn-lv-del'>Reject</button>
+                  {item.status === 'Pending' ? ( // Cek status saat ini
+                    <>
+                      <button onClick={() => handleStatusChange('Accepted', item.id)} disabled={item.status !== 'Pending'} className='btn-lv-submit'>Approve</button>
+                      <button onClick={() => handleStatusChange('Denied', item.id)} disabled={item.status !== 'Pending'} className='btn-lv-del'>Reject</button>
+                    </>
+                  ) : (
+                    <p className='' style={{ textAlign: 'center', color: item.status === 'Accepted' ? '#00FE0A' : 'red' }}>{item.status}</p> // Tampilkan teks status jika tidak lagi "Pending"
+                  )}
                 </div>
               </td>
             </tr>
           ))}
+
         </tbody>
       </table>
-      <p>Status: {status}</p>
+      {/* <p>Status: {status}</p> */}
     </div>
   );
 };

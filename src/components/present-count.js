@@ -5,10 +5,11 @@ const PresentCount = () => {
     const jwtToken = localStorage.getItem('token');
 
     useEffect(() => {
+        const today = new Date().toISOString().slice(0, 10); // Mendapatkan tanggal hari ini dalam format YYYY-MM-DD
 
         const fetchData = async () => {
             try {
-                const response = await fetch('http://LAPTOP-A5E7H59A:5000/attendance', {
+                const response = await fetch(`http://LAPTOP-A5E7H59A:5000/attendance?date=${today}`, {
                     headers: {
                         Authorization: `Bearer ${jwtToken}`,
                     }
@@ -22,7 +23,7 @@ const PresentCount = () => {
         };
 
         fetchData();
-    }, []);
+    }, [jwtToken]); // Menambahkan jwtToken sebagai dependensi
 
     return <p className='count'>{presentCount}</p>;
 };

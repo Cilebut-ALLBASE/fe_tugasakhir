@@ -27,7 +27,7 @@ export const Register = () => {
             });
 
             if (response.status === 200) {
-                alert('akun berhasil terdaftar');
+                alert('Akun berhasil didaftarkan!');
                 // Redirect ke halaman utama
                 navigate('/')
             } else if (response.status === 401) {
