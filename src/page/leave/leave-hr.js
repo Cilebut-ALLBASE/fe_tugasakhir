@@ -1,15 +1,18 @@
-import React, { useState } from "react";
-import '../../styles/leave-style.css';
+import React, { useState, useEffect } from "react";
+import '../../styles/leave-hd-style.css';
+import { Sidebar } from '../sidebar/sidebar';
 import { useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faBell } from '@fortawesome/free-solid-svg-icons';
-import moment from 'moment'; // Import moment.js
 import { Link } from 'react-router-dom';
-import Sidebar from "../sidebar/sidebar";
+import moment from "moment";
 import ProtectedRoute from "../../components/protectedroute";
 
-export const Leave = () => {
+export const LeaveHR = () => {
     const location = useLocation();
+    const [data, setData] = useState([]);
+    const [error, setError] = useState('');
+    const jwtToken = localStorage.getItem('token');
     const [newData, setNewData] = useState({
         name: '',
         role: '',
@@ -23,22 +26,15 @@ export const Leave = () => {
 
     const handleCreate = async (e) => {
         e.preventDefault();
-
-        // Konversi format tanggal menggunakan moment.js
-        const formattedDate = moment(newData.date).format('YYYY-MM-DD');
-        const formattedPeriod = moment(newData.period).format('YYYY-MM-DD');
-
-        // Membuat objek baru dengan format tanggal yang benar
-        const newDataWithFormattedDate = {
-            ...newData,
-            date: formattedDate,
-            period: formattedPeriod,
-        };
-
         try {
+            const dateFormatted = moment(newData.date).format('YYYY-MM-DD'); // Konversi format tanggal
+            const newDataWithFormattedDate = { ...newData, date: dateFormatted };
+            console.log('Tanggal yang akan dikirim:', dateFormatted);
+
             const response = await fetch('http://LAPTOP-A5E7H59A:5000/leave', {
                 method: 'POST',
                 headers: {
+                    "Authorization": `Bearer ${jwtToken}`,
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(newDataWithFormattedDate),
@@ -49,28 +45,39 @@ export const Leave = () => {
             } else if (response.status === 401) {
                 console.error('Failed to submit');
             } else {
-                console.error('Failed');
+                setError('Failed!');
             }
         } catch (error) {
             console.error('Error creating data:', error);
+            setError('Error!');
         }
     };
 
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setNewData({
-            ...newData,
-            [name]: value,
-        });
-    };
+    const [date, setDate] = useState('');
 
-    // ... Bagian lain dari komponen Anda ...
+    const [selectedOption, setSelectedOption] = useState('');
+
+    const dropdownOptions = [
+        'Annual Leave',
+        'Hospitalization',
+        'Marriage',
+        'Other',
+    ];
+
+    const handleDropdownChange = (event) => {
+        setSelectedOption(event.target.value);
+        setNewData({ ...newData, type: event.target.value });
+    }
 
     return (
         <ProtectedRoute>
             <div>
                 <div className="box">
                     <h1 className="h1-leave">Leave</h1>
+                    <div className="tab-button">
+                        <a className={`a-leave ${location.pathname === '/leave-hr' ? 'active-link' : ''}`} href="./leave-hr">Leave</a>
+                        <a className={`a-request ${location.pathname === '/request-hr' ? 'active-link' : ''}`} href="./request-hr">Request</a>
+                    </div>
                     <form onSubmit={handleCreate}>
                         <h2 className="h2-name">Name</h2>
                         <input
@@ -78,8 +85,8 @@ export const Leave = () => {
                             type="text"
                             name="name"
                             value={newData.name}
-                            onChange={handleInputChange}
-                        />
+                            onChange={(e) => setNewData({ ...newData, name: e.target.value })}
+                        ></input>
 
                         <h2 className="h2-role">Role</h2>
                         <input
@@ -87,21 +94,19 @@ export const Leave = () => {
                             type="text"
                             name="role"
                             value={newData.role}
-                            onChange={handleInputChange}
-                        />
+                            onChange={(e) => setNewData({ ...newData, role: e.target.value })}
+                        ></input>
 
                         <h2 className="h2-type">Type of Leave</h2>
                         <select
                             className="drop"
-                            name="type"
-                            value={newData.type}
-                            onChange={handleInputChange}
+                            value={selectedOption}
+                            onChange={handleDropdownChange}
                         >
-                            <option value="">Choose one</option>
-                            <option value="Annual Leave">Annual Leave</option>
-                            <option value="Hospitalization">Hospitalization</option>
-                            <option value="Marriage">Marriage</option>
-                            <option value="Other">Other</option>
+                            <option className="down" value="">Choose one</option>
+                            {dropdownOptions.map((option, index) => (
+                                <option key={index} value={option}>{option}</option>
+                            ))}
                         </select>
 
                         <h2 className="h2-reason">Reason</h2>
@@ -110,44 +115,42 @@ export const Leave = () => {
                             type="text"
                             name="reason"
                             value={newData.reason}
-                            onChange={handleInputChange}
-                        />
+                            onChange={(e) => setNewData({ ...newData, reason: e.target.value })}
+                        ></input>
 
                         <h2 className="date-1">Date</h2>
                         <input
                             className="box-date"
                             type="date"
-                            name="date"
                             value={newData.date}
-                            onChange={handleInputChange}
-                        />
+                            onChange={(e) => setNewData({ ...newData, date: e.target.value })}
+                        ></input>
 
                         <h2 className="h2-period">Leave Period</h2>
                         <input
                             className="period-box"
                             type="date"
-                            name="period"
                             value={newData.period}
-                            onChange={handleInputChange}
-                        />
+                            onChange={(e) => setNewData({ ...newData, period: e.target.value })}
+                        ></input>
 
                         <h2 className="h2-phone">Phone Number</h2>
                         <input
                             className="box-phone"
-                            type="text"
+                            type="text" // Menggunakan type="text" daripada "number"
                             name="phone"
                             value={newData.phone}
-                            onChange={handleInputChange}
-                        />
+                            onChange={(e) => setNewData({ ...newData, phone: e.target.value })}
+                        ></input>
 
                         <h2 className="h2-emergency">Emergency Contact</h2>
                         <input
                             className="box-emergency"
-                            type="text"
+                            type="text" // Menggunakan type="text" daripada "number"
                             name="emergency"
                             value={newData.emergency}
-                            onChange={handleInputChange}
-                        />
+                            onChange={(e) => setNewData({ ...newData, emergency: e.target.value })}
+                        ></input>
 
                         <button type="submit" className="button-submit">Submit</button>
                         <Link to="/home">
@@ -159,5 +162,5 @@ export const Leave = () => {
                 <Sidebar />
             </div>
         </ProtectedRoute>
-    );
-};
+    )
+}

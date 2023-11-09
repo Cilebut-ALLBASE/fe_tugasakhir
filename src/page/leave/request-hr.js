@@ -50,7 +50,7 @@ export const Request_hr = () => {
             <div>
                 <div className='bx-request'>
                     <div className="tab-button">
-                        <a className={`a-leave ${location.pathname === '/leave' ? 'active-link' : ''}`} href="./leave">Leave</a>
+                        <a className={`a-leave ${location.pathname === '/leave-hr' ? 'active-link' : ''}`} href="./leave-hr">Leave</a>
                         <a className={`a-request ${location.pathname === '/request-hr' ? 'active-link' : ''}`} href="./request-hr">Request</a>
                     </div>
                     <h1 className='req'>Request</h1>

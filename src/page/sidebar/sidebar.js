@@ -34,8 +34,9 @@ export function Sidebar() {
 
 	const menus = [ //Link Sidebar
 		{ name: 'Home', url: '/home', roles: ['staff', 'hd'] },
-		{ name: 'Attendance', url: '/absen', roles: ['staff', 'hd', "hr"] },
-		{ name: 'Leave', url: '/leave', roles: ['staff', "hr"] },
+		{ name: 'Attendance', url: '/absen', roles: ['staff', 'hd', 'hr'] },
+		{ name: 'Leave', url: '/leave', roles: ['staff'] },
+		{ name: 'Leave', url: '/leave-hr', roles: ['hr'] },
 		{ name: 'Home', url: '/home-hr', roles: ['hr'] },
 		{ name: 'Leave', url: '/leave-hd', roles: ['hd'] },
 		// Tambahkan menu sesuai peran pengguna di sini
@@ -77,6 +78,8 @@ export function Sidebar() {
 							} else if (menu.url === '/leave' || menu.url === '/request') {
 								className = 'lv-text';
 							} else if (menu.url === '/leave-hd') {
+								className = 'lv-text';
+							} else if (menu.url === '/leave-hr') {
 								className = 'lv-text';
 							} else {
 								className = 'ovr-text';
