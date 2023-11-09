@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import '../../styles/leave-style.css';
 import { useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -7,6 +7,7 @@ import moment from 'moment'; // Import moment.js
 import { Link } from 'react-router-dom';
 import Sidebar from "../sidebar/sidebar";
 import ProtectedRoute from "../../components/protectedroute";
+import jwtDecode from "jwt-decode";
 
 export const Leave = () => {
     const location = useLocation();
@@ -64,7 +65,18 @@ export const Leave = () => {
         });
     };
 
-    // ... Bagian lain dari komponen Anda ...
+    useEffect(() => {
+        const jwtToken = localStorage.getItem('token');
+        
+        if(jwtToken) {
+            const decodedToken = jwtDecode(jwtToken);
+            const userName = decodedToken.name;
+            const role = decodedToken.role;
+
+            setNewData({...newData, name: userName, role: role});
+        }
+
+      }, []);
 
     return (
         <ProtectedRoute>
@@ -79,6 +91,7 @@ export const Leave = () => {
                             name="name"
                             value={newData.name}
                             onChange={handleInputChange}
+                            disabled
                         />
 
                         <h2 className="h2-role">Role</h2>
@@ -88,6 +101,7 @@ export const Leave = () => {
                             name="role"
                             value={newData.role}
                             onChange={handleInputChange}
+                            disabled
                         />
 
                         <h2 className="h2-type">Type of Leave</h2>
