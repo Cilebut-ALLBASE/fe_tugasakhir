@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import '../../styles/leave-style.css';
+import { useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faBell } from '@fortawesome/free-solid-svg-icons';
 import moment from 'moment'; // Import moment.js
@@ -8,6 +9,7 @@ import Sidebar from "../sidebar/sidebar";
 import ProtectedRoute from "../../components/protectedroute";
 
 export const Leave = () => {
+    const location = useLocation();
     const [newData, setNewData] = useState({
         name: '',
         role: '',
@@ -68,12 +70,9 @@ export const Leave = () => {
         <ProtectedRoute>
             <div>
                 <div className="box">
-                    <div className="notif">
-                        <FontAwesomeIcon icon={faBell} />
-                    </div>
-                    <div>
-                        <FontAwesomeIcon className="search" icon={faSearch} />
-                        <input className="input-search" type="text" />
+                    <div className="tab-button">
+                        <a className={`a-leave ${location.pathname === '/leave' ? 'active-link' : ''}`} href="./leave">Leave</a>
+                        <a className={`a-request ${location.pathname === '/request' ? 'active-link' : ''}`} href="./request-hr">Request</a>
                     </div>
                     <h1 className="h1-leave">Leave</h1>
                     <form onSubmit={handleCreate}>

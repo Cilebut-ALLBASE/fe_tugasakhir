@@ -73,13 +73,6 @@ export const LeaveHD = () => {
         <ProtectedRoute>
             <div>
                 <div className="box">
-                    <div className="notif">
-                        <FontAwesomeIcon icon={faBell} />
-                    </div>
-                    <div>
-                        <FontAwesomeIcon className="search" icon={faSearch} />
-                        <input className="input-search" type="text"></input>
-                    </div>
                     <h1 className="h1-leave">Leave</h1>
                     <div className="tab-button">
                         <a className={`a-leave ${location.pathname === '/leave-hd' ? 'active-link' : ''}`} href="./leave-hd">Leave</a>

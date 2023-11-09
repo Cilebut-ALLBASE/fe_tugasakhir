@@ -8,6 +8,7 @@ import { Leave } from './page/leave/leave';
 import { LeaveHD } from './page/leave/leave-hd';
 import { Home_hr } from './page/home-hr';
 import { Request } from './page/leave/request';
+import { Request_hr } from './page/leave/request-hr';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path='/leave-hd' element={<LeaveHD />}></Route>
         <Route path='/home-hr' element={<Home_hr />}></Route>
         <Route path='/request' element={<Request />}></Route>
+        <Route path='/request-hr' element={<Request_hr />}></Route>
       </Routes>
     </div>
   );
