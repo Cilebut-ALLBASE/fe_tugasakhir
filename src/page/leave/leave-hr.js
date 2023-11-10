@@ -7,6 +7,7 @@ import { faSearch, faBell } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import moment from "moment";
 import ProtectedRoute from "../../components/protectedroute";
+import jwtDecode from "jwt-decode";
 
 export const LeaveHR = () => {
     const location = useLocation();
@@ -69,6 +70,19 @@ export const LeaveHR = () => {
         setNewData({ ...newData, type: event.target.value });
     }
 
+    useEffect(() => {
+        const jwtToken = localStorage.getItem('token');
+
+        if (jwtToken) {
+            const decodedToken = jwtDecode(jwtToken);
+            const userName = decodedToken.name;
+            const role = decodedToken.role;
+
+            setNewData({ ...newData, name: userName, role: role });
+        }
+
+    }, []);
+
     return (
         <ProtectedRoute>
             <div>
@@ -81,11 +95,13 @@ export const LeaveHR = () => {
                     <form onSubmit={handleCreate}>
                         <h2 className="h2-name">Name</h2>
                         <input
+                            disabled
                             className="box-name"
                             type="text"
                             name="name"
                             value={newData.name}
                             onChange={(e) => setNewData({ ...newData, name: e.target.value })}
+                            placeholder=""
                         ></input>
 
                         <h2 className="h2-role">Role</h2>

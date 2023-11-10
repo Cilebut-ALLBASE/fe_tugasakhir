@@ -6,7 +6,6 @@ import '../../styles/request-style.css';
 import moment from 'moment';
 import ProtectedRoute from '../../components/protectedroute';
 
-
 export const Request_hr = () => {
     const location = useLocation();
     const [data, setData] = useState([]);
@@ -24,22 +23,26 @@ export const Request_hr = () => {
         { field: 'emergency', column: 'Emergency Contact' },
     ];
 
-    const fetchData = async () => {
-        try {
-            const response = await fetch('http://LAPTOP-A5E7H59A:5000/leave', {
-                headers: {
-                    Authorization: `Bearer ${jwtToken}`,
-                }
-            });
-            const dataFromApi = await response.json();
-            setData(dataFromApi.data);
-            setLoading(false);
-        }
-        catch (error) {
-            console.error('Error fetching data:', error);
-            setLoading(false);
-        }
-    };
+    useEffect(() => {
+    fetchData();
+}, []);
+
+const fetchData = async () => {
+    try {
+        const response = await fetch('http://LAPTOP-A5E7H59A:5000/leave', {
+            headers: {
+                Authorization: `Bearer ${jwtToken}`,
+            }
+        });
+        const dataFromApi = await response.json();
+        setData(dataFromApi.data.filter(item => item.role === 'hd'));
+        setLoading(false);
+    }
+    catch (error) {
+        console.error('Error fetching data:', error);
+        setLoading(false);
+    }
+};
 
     useEffect(() => {
         fetchData();
@@ -66,6 +69,5 @@ export const Request_hr = () => {
         </ProtectedRoute>
     );
 };
-
 
 export default Request_hr;
