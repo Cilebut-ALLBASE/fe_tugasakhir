@@ -8,22 +8,37 @@ import moment from "moment/moment";
 const ReactCalendar = () => {
   const [date, setDate] = useState(new Date());
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [absenDates, setAbsenDates] = useState(() => {
-    // Mengambil tanggal-tanggal absen dari localStorage saat komponen pertama kali dimuat
-    const storedDates = localStorage.getItem('absenDates');
-    return storedDates ? JSON.parse(storedDates) : [];
-  });
+  const [absenStatus, setAbsenStatus] = useState(false); // Tambahkan state absenStatus
   const jwtToken = localStorage.getItem('token');
   const formattedDate = moment(date).format('YYYY-MM-DD');
 
-  // Fungsi untuk memeriksa apakah pengguna sudah absen pada tanggal tertentu
-  const hasAbsenOnDate = (date) => {
-    return absenDates.includes(moment(date).format('YYYY-MM-DD'));
+  useEffect(() => {
+    // Ketika komponen dimuat, periksa apakah pengguna sudah absen hari ini
+    checkAbsenStatus();
+  }, []);
+
+  const checkAbsenStatus = () => {
+    // Lakukan pengecekan ke backend untuk mendapatkan status absen hari ini
+    fetch(`http://DESKTOP-75HF6R4:5000/attendance/status?date=${formattedDate}`, {
+      method: 'GET',
+      headers: {
+        "Authorization": `Bearer ${jwtToken}`,
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        console.log('Absen status:', result);
+        setAbsenStatus(result.absenStatus);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
   };
 
   const onDateClick = (date) => {
     setDate(date);
-    if (hasAbsenOnDate(date)) {
+    if (absenStatus) {
       alert('Yeyy! Anda sudah absen hari ini!');
     } else {
       setIsDialogOpen(true);
@@ -47,11 +62,9 @@ const ReactCalendar = () => {
       .then((response) => response.json())
       .then((result) => {
         console.log('API response:', result);
-        // Tambahkan tanggal absen ke daftar absen pengguna
-        const updatedDates = [...absenDates, formattedDate];
-        setAbsenDates(updatedDates);
-        // Simpan tanggal-tanggal absen di localStorage
-        localStorage.setItem('absenDates', JSON.stringify(updatedDates));
+        // Set absenStatus ke true setelah berhasil absen
+        setAbsenStatus(true);
+        setIsDialogOpen(false); // Tutup popup setelah berhasil absen
       })
       .catch((error) => {
         console.error('Error:', error);
