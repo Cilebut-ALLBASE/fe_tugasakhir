@@ -70,6 +70,19 @@ export const LeaveHR = () => {
         setNewData({ ...newData, type: event.target.value });
     }
 
+    useEffect(() => {
+        const jwtToken = localStorage.getItem('token');
+
+        if (jwtToken) {
+            const decodedToken = jwtDecode(jwtToken);
+            const userName = decodedToken.name;
+            const role = decodedToken.role;
+
+            setNewData({ ...newData, name: userName, role: role });
+        }
+
+    }, []);
+    
     return (
         <ProtectedRoute>
             <div>

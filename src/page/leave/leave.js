@@ -11,6 +11,7 @@ import jwtDecode from "jwt-decode";
 
 export const Leave = () => {
     const location = useLocation();
+    const jwtToken = localStorage.getItem('token');
     const [newData, setNewData] = useState({
         name: '',
         role: '',
@@ -40,6 +41,7 @@ export const Leave = () => {
             const response = await fetch('http://LAPTOP-A5E7H59A:5000/leave', {
                 method: 'POST',
                 headers: {
+                    "Authorization": `Bearer ${jwtToken}`,
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(newDataWithFormattedDate),
