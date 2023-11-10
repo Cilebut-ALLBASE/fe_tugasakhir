@@ -27,22 +27,22 @@ export const Request_hr = () => {
     fetchData();
 }, []);
 
-const fetchData = async () => {
-    try {
-        const response = await fetch('http://LAPTOP-A5E7H59A:5000/leave', {
-            headers: {
-                Authorization: `Bearer ${jwtToken}`,
-            }
-        });
-        const dataFromApi = await response.json();
-        setData(dataFromApi.data.filter(item => item.role === 'hd'));
-        setLoading(false);
-    }
-    catch (error) {
-        console.error('Error fetching data:', error);
-        setLoading(false);
-    }
-};
+    const fetchData = async () => {
+        try {
+            const response = await fetch('http://LAPTOP-A5E7H59A:5000/leave/hd', {
+                headers: {
+                    Authorization: `Bearer ${jwtToken}`,
+                }
+            });
+            const dataFromApi = await response.json();
+            setData(dataFromApi.data);
+            setLoading(false);
+        }
+        catch (error) {
+            console.error('Error fetching data:', error);
+            setLoading(false);
+        }
+    };
 
     useEffect(() => {
         fetchData();

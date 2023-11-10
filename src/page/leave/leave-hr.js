@@ -70,19 +70,6 @@ export const LeaveHR = () => {
         setNewData({ ...newData, type: event.target.value });
     }
 
-    useEffect(() => {
-        const jwtToken = localStorage.getItem('token');
-
-        if (jwtToken) {
-            const decodedToken = jwtDecode(jwtToken);
-            const userName = decodedToken.name;
-            const role = decodedToken.role;
-
-            setNewData({ ...newData, name: userName, role: role });
-        }
-
-    }, []);
-
     return (
         <ProtectedRoute>
             <div>
@@ -111,6 +98,7 @@ export const LeaveHR = () => {
                             name="role"
                             value={newData.role}
                             onChange={(e) => setNewData({ ...newData, role: e.target.value })}
+                            disabled
                         ></input>
 
                         <h2 className="h2-type">Type of Leave</h2>

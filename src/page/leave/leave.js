@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import '../../styles/leave-style.css';
 import { useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -67,7 +67,7 @@ export const Leave = () => {
 
     useEffect(() => {
         const jwtToken = localStorage.getItem('token');
-
+        
         if(jwtToken) {
             const decodedToken = jwtDecode(jwtToken);
             const userName = decodedToken.name;
