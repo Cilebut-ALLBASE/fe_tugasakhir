@@ -19,7 +19,7 @@ const ReactCalendar = () => {
 
   const checkAbsenStatus = () => {
     // Lakukan pengecekan ke backend untuk mendapatkan status absen hari ini
-    fetch(`http://DESKTOP-75HF6R4:5000/attendance/status?date=${formattedDate}`, {
+    fetch(`http://LAPTOP-A5E7H59A:5000/attendance/status?date=${formattedDate}`, {
       method: 'GET',
       headers: {
         "Authorization": `Bearer ${jwtToken}`,
