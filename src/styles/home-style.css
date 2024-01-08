@@ -166,10 +166,16 @@ tr {
     text-align: center;
 }
 
-.kalender {
-    font-family: 'Inter', sans-serif;
+.Attendance-history {
+    flex: 1;
+    background-color: white;
+    padding: 20px;
+    border-radius: 20px;
+    min-width: min-content;
+    max-height: 40.5vh;
+    flex: 1;
+    overflow-y: auto;
     width: 100%;
-    flex-grow: 1;
 }
 
 .att_history {

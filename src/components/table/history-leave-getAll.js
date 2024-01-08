@@ -8,6 +8,7 @@ const Leave_history_getAll = () => {
     const jwtToken = localStorage.getItem('token');
 
     const columns = [
+        { field: 'name', column: 'Name' },
         { field: 'type', column: 'Type of Leave' },
         { field: 'date', column: 'Date' },
         { field: 'status', column: 'Status' },
@@ -24,6 +25,9 @@ const Leave_history_getAll = () => {
                     }
                 });
                 const dataFromApi = await response.json();
+
+                console.log('Data from API:', dataFromApi);
+
                 setData(dataFromApi.data);
                 setLoading(false);
             } catch (error) {

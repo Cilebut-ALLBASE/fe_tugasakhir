@@ -8,17 +8,17 @@ import moment from "moment/moment";
 const ReactCalendar = () => {
   const [date, setDate] = useState(new Date());
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [absenStatus, setAbsenStatus] = useState(false); // Tambahkan state absenStatus
+  const [absenStatus, setAbsenStatus] = useState(false);
+  const [absenPulangStatus, setAbsenPulangStatus] = useState(false);
   const jwtToken = localStorage.getItem('token');
   const formattedDate = moment(date).format('YYYY-MM-DD');
+  const currentHour = moment().hour();
 
   useEffect(() => {
-    // Ketika komponen dimuat, periksa apakah pengguna sudah absen hari ini
     checkAbsenStatus();
   }, []);
 
   const checkAbsenStatus = () => {
-    // Lakukan pengecekan ke backend untuk mendapatkan status absen hari ini
     fetch(`http://LAPTOP-A5E7H59A:5000/attendance/status?date=${formattedDate}`, {
       method: 'GET',
       headers: {
@@ -30,6 +30,7 @@ const ReactCalendar = () => {
       .then((result) => {
         console.log('Absen status:', result);
         setAbsenStatus(result.absenStatus);
+        setAbsenPulangStatus(result.absenPulangStatus);
       })
       .catch((error) => {
         console.error('Error:', error);
@@ -49,6 +50,7 @@ const ReactCalendar = () => {
     let data = {
       date: formattedDate,
       status: selectedOption,
+      pulang: absenPulangStatus,
     };
 
     fetch('http://LAPTOP-A5E7H59A:5000/attendance', {
@@ -62,9 +64,9 @@ const ReactCalendar = () => {
       .then((response) => response.json())
       .then((result) => {
         console.log('API response:', result);
-        // Set absenStatus ke true setelah berhasil absen
         setAbsenStatus(true);
-        setIsDialogOpen(false); // Tutup popup setelah berhasil absen
+        setAbsenPulangStatus(true);
+        setIsDialogOpen(false);
       })
       .catch((error) => {
         console.error('Error:', error);
@@ -73,7 +75,7 @@ const ReactCalendar = () => {
 
   return (
     <div>
-      <Calendar onClickDay={onDateClick} value={date} minDate={new Date} maxDate={new Date} />
+      <Calendar onClickDay={onDateClick} value={date} minDate={new Date()} maxDate={new Date()} />
       <PopupAbsen isOpen={isDialogOpen} onClose={() => setIsDialogOpen(false)} onAbsenSubmit={handleAbsenSubmit} />
     </div>
   );

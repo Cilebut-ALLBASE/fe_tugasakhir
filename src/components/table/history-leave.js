@@ -8,6 +8,7 @@ const Leave_history = () => {
     const jwtToken = localStorage.getItem('token');
 
     const columns = [
+        { field: 'name', column: 'Name' },
         { field: 'type', column: 'Type of Leave' },
         { field: 'date', column: 'Date' },
         { field: 'status', column: 'Status' },
